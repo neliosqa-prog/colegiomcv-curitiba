@@ -1,0 +1,2526 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Colégio Madre Cecília Cros — Educação de excelência desde 1983. Ensino Infantil, Fundamental e Médio em Curitiba/PR."/>
+<title>Colégio Madre Cecília Cros</title>
+<link rel="icon" href="assets/icone_3e6848525446.png" type="image/png"/>
+
+<!-- Google Fonts: Poppins -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+<!-- TailwindCSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- AOS — Animate On Scroll -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+<!-- Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+<!-- Tailwind brand config -->
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: '#170958',
+        'brand-dark': '#0d0535',
+        'brand-mid': '#1e0d70',
+        teal: '#56b68b',
+        gold: '#fec722',
+        orange: '#fe8717',
+      },
+      fontFamily: { sans: ['Poppins', 'sans-serif'] },
+    }
+  }
+}
+</script>
+
+<style>
+/* ════ RESET ════ */
+*, *::before, *::after { box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; overflow-x: hidden; color: #333; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: #170958; border-radius: 3px; }
+
+/* ════ HEADER ════ */
+#hdr {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(23,9,88,0.97);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: box-shadow 0.35s;
+}
+/* Scroll: mantém cor institucional, adiciona sombra discreta */
+#hdr.scrolled {
+  background: #170958;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.28);
+}
+
+/* ── Bloco da marca estilo Colégio Positivo ──
+   Aba laranja com dots à esquerda + área branca com a logo */
+.logo-block {
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.20);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: box-shadow .25s, transform .22s;
+  background: #fff;
+}
+.logo-block:hover {
+  box-shadow: 0 6px 26px rgba(0,0,0,0.26);
+  transform: translateY(-1px);
+}
+
+/* Aba laranja com grid de pontos brancos */
+.logo-deco {
+  background: #fe8717;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  flex-shrink: 0;
+  border-radius: 0 20px 20px 0;
+  position: relative;
+  z-index: 1;
+}
+.logo-deco svg {
+  display: block;
+  width: 26px;
+  height: 26px;
+}
+
+/* Área branca com a logo */
+.logo-img-wrap {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 10px 22px 10px 16px;
+  flex-shrink: 0;
+}
+.logo-img-wrap img {
+  height: 56px;       /* desktop: maior e mais visível */
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Responsivo: tablet ── */
+@media (max-width: 1024px) {
+  .logo-img-wrap img { height: 48px; max-width: 180px; }
+  .logo-deco { padding: 0 13px; }
+}
+
+/* ── Responsivo: mobile ── */
+@media (max-width: 640px) {
+  .logo-block { border-radius: 12px; }
+  .logo-deco { padding: 0 11px; border-radius: 0 14px 14px 0; }
+  .logo-deco svg { width: 20px; height: 20px; }
+  .logo-img-wrap { padding: 8px 14px 8px 12px; }
+  .logo-img-wrap img { height: 40px; max-width: 150px; }
+}
+.nl {
+  color: rgba(255,255,255,0.85); font-size: 13.5px; font-weight: 500;
+  text-decoration: none; padding: 4px 0; position: relative; transition: color .25s;
+  white-space: nowrap;
+}
+.nl::after {
+  content: ''; position: absolute; bottom: -2px; left: 0;
+  width: 0; height: 2px; background: #fec722;
+  transition: width .28s ease; border-radius: 2px;
+}
+.nl:hover { color: #fec722 !important; }
+.nl:hover::after { width: 100%; }
+
+/* ════ HERO ════ */
+#hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden; }
+/* #hero-bg e #hero-overlay substituídos pelo hero slider Swiper */
+/* Estilos do slider: .hero-swiper, .hs-img, .hs-ov (ver seção HERO SLIDER abaixo) */
+.hero-content { position: relative; z-index: 2; }
+
+/* search widget */
+.sw {
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 18px;
+}
+.sw-sel {
+  width: 100%; background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 10px;
+  color: #fff; padding: 12px 14px; font-family: 'Poppins',sans-serif;
+  font-size: 13px; outline: none; cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+  transition: border-color .2s, background .2s;
+}
+.sw-sel option { color: #333; }
+.sw-sel:focus, .sw-sel:hover { border-color: #fec722; background: rgba(255,255,255,0.14); }
+
+/* scroll bounce */
+@keyframes sbounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
+.scroll-ind { animation: sbounce 1.8s ease-in-out infinite; }
+
+/* ════ BUTTONS ════ */
+.btn-y {
+  background: linear-gradient(135deg, #fec722, #fe8717);
+  color: #170958; font-weight: 700; border-radius: 12px;
+  padding: 13px 30px; font-size: 14px; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+  transition: transform .2s, box-shadow .2s; white-space: nowrap;
+}
+.btn-y:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(254,199,34,.42); }
+.btn-y:active { transform: translateY(0); }
+
+/* ── Botão "Área do Aluno" — pill gradient estilo premium ── */
+.btn-aluno {
+  background: linear-gradient(to right, #fec722, #fe8717);
+  color: #170958;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  border-radius: 50px;
+  padding: 10px 22px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 18px rgba(254,135,23,0.38);
+  transition: box-shadow .22s, transform .2s, filter .2s;
+}
+.btn-aluno:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(254,135,23,0.50);
+  filter: brightness(1.05);
+}
+.btn-aluno:active { transform: translateY(0); }
+
+.btn-o {
+  border: 2px solid rgba(255,255,255,0.55); color: #fff; font-weight: 600;
+  border-radius: 12px; padding: 11px 26px; font-size: 14px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+  background: transparent; transition: all .25s; white-space: nowrap;
+}
+.btn-o:hover { background: rgba(255,255,255,0.14); border-color: #fec722; color: #fec722; }
+
+.btn-p {
+  background: #170958; color: #fff; font-weight: 700;
+  border-radius: 12px; padding: 12px 26px; font-size: 14px;
+  display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+  transition: transform .2s, box-shadow .2s; white-space: nowrap; border: none; cursor: pointer;
+}
+.btn-p:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(23,9,88,.35); }
+
+/* ════ CARDS ════ */
+.ic { /* info card */
+  background: #fff; border-radius: 20px; padding: 28px 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.07); border: 1px solid rgba(0,0,0,.04);
+  transition: transform .3s, box-shadow .3s;
+}
+.ic:hover { transform: translateY(-8px); box-shadow: 0 20px 56px rgba(0,0,0,.12); }
+.ic-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+}
+
+/* ════ FEATURE ITEMS ════ */
+.feat {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0; border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.feat:last-child { border-bottom: none; }
+.feat-icon {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 9px;
+  background: linear-gradient(135deg,#170958,#1e0d70);
+  display: flex; align-items: center; justify-content: center; color: #fec722;
+}
+
+/* ════ LEVEL BADGE ════ */
+.lbadge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(254,199,34,.13); border: 1px solid rgba(254,199,34,.38);
+  border-radius: 100px; padding: 5px 14px;
+  font-size: 11.5px; font-weight: 600; color: #fec722; margin-bottom: 14px;
+}
+
+/* ════ STAT NUMBER ════ */
+
+
+/* ════ INTELIGENCIAS ════ */
+.intel-card {
+  background: #fff; border-radius: 16px; padding: 22px 16px; text-align: center;
+  box-shadow: 0 4px 18px rgba(0,0,0,.07); border: 1px solid rgba(0,0,0,.04);
+  transition: transform .3s, box-shadow .3s; cursor: default;
+}
+.intel-card:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(23,9,88,.14); }
+.intel-icon {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: linear-gradient(135deg,#170958,#56b68b);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px; color: #fec722;
+}
+
+/* ════ TESTIMONIAL SWIPER ════ */
+.swiper-test { padding: 12px 4px 52px !important; }
+.test-card {
+  background: #fff; border-radius: 20px; padding: 28px;
+  box-shadow: 0 4px 28px rgba(0,0,0,.07); border: 1px solid rgba(0,0,0,.05);
+}
+.swiper-pagination-bullet-active { background: #170958 !important; }
+
+/* ════ FORM INPUT ════ */
+.fi {
+  width: 100%; border: 1.5px solid #e5e7eb; border-radius: 12px;
+  padding: 11px 14px; font-size: 13px; font-family: 'Poppins',sans-serif;
+  outline: none; transition: border-color .2s, box-shadow .2s;
+}
+.fi:focus { border-color: #170958; box-shadow: 0 0 0 3px rgba(23,9,88,.09); }
+
+/* ════ CTA SECTION ════ */
+.cta-s {
+  background: linear-gradient(135deg,#170958 0%,#0d0535 55%,#1e0d70 100%);
+  position: relative; overflow: hidden;
+}
+.cta-s::before {
+  content: ''; position: absolute; top: -40%; right: -5%;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(86,182,139,.15), transparent 70%);
+}
+
+/* ════ MOBILE MENU ════ */
+#mob-menu {
+  display: none; position: fixed; inset: 0; z-index: 998;
+  background: rgba(23,9,88,.97); backdrop-filter: blur(20px);
+  padding: 100px 32px 40px; flex-direction: column; gap: 4px;
+}
+#mob-menu.open { display: flex; }
+.mnl {
+  color: rgba(255,255,255,.85); font-size: 18px; font-weight: 600;
+  text-decoration: none; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.07);
+  transition: color .2s, padding-left .2s;
+}
+.mnl:hover { color: #fec722; padding-left: 6px; }
+
+/* ════ FLOAT BUTTONS ════ */
+@keyframes fadein { from{opacity:0} to{opacity:1} }
+.float-btn { animation: fadein .6s ease-out both; }
+
+/* ════ WAVE SVG ════ */
+.wave { display: block; width: 100%; overflow: hidden; line-height: 0; }
+
+/* ════ NEWS CARD ════ */
+.news-card {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.07); border: 1px solid rgba(0,0,0,.04);
+  transition: transform .3s, box-shadow .3s;
+}
+.news-card:hover { transform: translateY(-6px); box-shadow: 0 16px 44px rgba(0,0,0,.12); }
+.news-card img { transition: transform .4s ease; }
+.news-card:hover img { transform: scale(1.06); }
+
+/* ════ NEWS CARROSSEL ════ */
+.news-section-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px; margin-bottom: 36px;
+}
+.news-arrows {
+  display: flex; gap: 10px; flex-shrink: 0;
+}
+.news-arrow {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: #fff; border: 1.5px solid #e2e8f0;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.25s; color: #170958;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  outline: none;
+}
+.news-arrow:hover {
+  background: #170958; color: #fec722; border-color: #170958;
+  box-shadow: 0 4px 16px rgba(23,9,88,.30);
+  transform: scale(1.07);
+}
+.news-arrow:active { transform: scale(0.97); }
+.news-arrow.swiper-button-disabled {
+  opacity: 0.30; cursor: not-allowed; pointer-events: none; transform: none;
+}
+.news-arrow svg { width: 18px; height: 18px; flex-shrink: 0; }
+/* Card interno do swiper */
+.nc {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,.07); border: 1px solid rgba(0,0,0,.05);
+  transition: transform .30s, box-shadow .30s;
+  display: flex; flex-direction: column; height: 100%;
+  text-decoration: none; color: inherit;
+}
+.nc:hover { transform: translateY(-6px); box-shadow: 0 16px 44px rgba(23,9,88,.12); }
+.nc-img {
+  width: 100%; height: 218px; overflow: hidden; flex-shrink: 0;
+}
+.nc-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .45s ease;
+}
+.nc:hover .nc-img img { transform: scale(1.07); }
+.nc-body {
+  padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1;
+}
+.nc-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+  text-transform: uppercase; color: #56b68b; margin-bottom: 10px; display: block;
+}
+.nc-title {
+  font-size: 15px; font-weight: 700; color: #1e293b;
+  line-height: 1.52; margin: 0 0 16px; flex: 1;
+}
+.nc-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; color: #170958;
+  transition: gap .20s; margin-top: auto;
+}
+.nc:hover .nc-link { gap: 11px; }
+.nc-link svg { width: 14px; height: 14px; transition: transform .20s; }
+.nc:hover .nc-link svg { transform: translateX(3px); }
+/* Swiper news pagination */
+.news-swiper { overflow: visible; }
+#news-dots {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin-top: 32px; position: static;
+}
+#news-dots .swiper-pagination-bullet {
+  width: 8px; height: 8px; border-radius: 100px;
+  background: rgba(23,9,88,.22); opacity: 1; margin: 0 !important;
+  transition: all .30s; cursor: pointer;
+}
+#news-dots .swiper-pagination-bullet-active {
+  width: 28px; background: #170958;
+}
+
+/* ════ CONQUISTAS CARROSSEL ════ */
+.cq-section {
+  /* fundo claro off-white — integrado ao restante do site */
+  background: #f5f6fa;
+  position: relative; overflow: hidden;
+}
+/* Detalhe decorativo sutil — sem peso visual */
+.cq-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 55% 50% at 100% 0%, rgba(86,182,139,.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cq-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px; margin-bottom: 40px;
+}
+.cq-header-left .slbl { color: #56b68b; }
+.cq-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+  font-weight: 800; color: #170958; line-height: 1.2; margin: 0;
+}
+/* Setas — adaptadas ao fundo claro */
+.cq-arrows { display: flex; gap: 10px; flex-shrink: 0; }
+.cq-arrow {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #170958;
+  transition: all 0.25s; outline: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+}
+.cq-arrow:hover {
+  background: #170958; border-color: #170958; color: #fec722;
+  transform: scale(1.07);
+  box-shadow: 0 4px 18px rgba(23,9,88,.22);
+}
+.cq-arrow:active { transform: scale(0.97); }
+.cq-arrow.swiper-button-disabled {
+  opacity: 0.30; cursor: not-allowed; pointer-events: none; transform: none;
+}
+.cq-arrow svg { width: 18px; height: 18px; flex-shrink: 0; }
+/* Card de conquista — sombra suave para fundo claro */
+.cq-card {
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.10);
+  position: relative; display: block;
+  transition: transform .30s, box-shadow .30s;
+}
+.cq-card:hover { transform: translateY(-6px); box-shadow: 0 16px 44px rgba(23,9,88,.15); }
+.cq-img-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; }
+.cq-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .45s ease; display: block;
+}
+.cq-card:hover .cq-img-wrap img { transform: scale(1.06); }
+/* Caption com gradiente mantido — legível sobre a imagem */
+.cq-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 36px 20px 18px;
+  background: linear-gradient(to top, rgba(13,5,53,.88) 0%, transparent 100%);
+}
+.cq-caption-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+  text-transform: uppercase; color: #fec722; display: block; margin-bottom: 6px;
+}
+.cq-caption-title {
+  font-size: 14px; font-weight: 700; color: #fff; line-height: 1.45; margin: 0;
+}
+/* Swiper conquistas */
+.cq-swiper { overflow: visible; }
+.cq-swiper .swiper-slide { height: auto; }
+/* Paginação — adaptada ao fundo claro */
+#cq-dots {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; margin-top: 36px; position: static;
+}
+#cq-dots .swiper-pagination-bullet {
+  width: 8px; height: 8px; border-radius: 100px;
+  background: rgba(23,9,88,.20); opacity: 1; margin: 0 !important;
+  transition: all .30s; cursor: pointer;
+}
+#cq-dots .swiper-pagination-bullet-active {
+  width: 28px; background: #170958;
+}
+
+/* ════ SECTION LABEL ════ */
+.slbl {
+  display: block; font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: #56b68b; margin-bottom: 6px;
+}
+
+/* ════ CONQUISTAS CARROSSEL ════ */
+/* seção substituída — ver classes .cq-* abaixo */
+
+@media (max-width:768px) {
+
+  .hs-img { background-attachment: scroll; }
+}
+
+/* ════ HEADER: LOGO ENHANCEMENT ════ */
+/* Logo gerenciada via .logo-block — ver acima */
+
+/* Altura explícita do header — presença institucional forte */
+#hdr-inner {
+  height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ════ DROPDOWN "COLÉGIOS" — Desktop ════ */
+
+/* Wrapper: posicionamento relativo para o painel absoluto */
+.dd-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Trigger: visual idêntico ao .nl mas como botão semântico */
+.dd-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  transition: color .25s;
+  white-space: nowrap;
+  position: relative;
+  line-height: 1;
+}
+
+.dd-trigger::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #fec722;
+  transition: width .28s ease;
+  border-radius: 2px;
+}
+
+.dd-trigger:hover,
+.dd-wrap.is-open .dd-trigger {
+  color: #fec722 !important;
+}
+
+.dd-trigger:hover::after,
+.dd-wrap.is-open .dd-trigger::after {
+  width: 100%;
+}
+
+/* dd-trigger: sempre no tema escuro (header mantém cor) */
+
+/* Caret chevron animado */
+.dd-caret {
+  width: 10px;
+  height: 7px;
+  overflow: visible;
+  transition: transform .25s ease;
+  position: relative;
+  top: 1px;
+  flex-shrink: 0;
+}
+
+.dd-wrap.is-open .dd-caret {
+  transform: rotate(180deg);
+}
+
+/* ── Painel do dropdown — Mega Menu ── */
+.dd-panel {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  width: 600px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(23,9,88,0.18), 0 4px 14px rgba(0,0,0,0.06);
+  border-top: 3px solid #170958;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: 1050;
+  overflow: hidden;
+}
+
+/* Estado aberto */
+.dd-wrap.is-open .dd-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Layout interno: lista + preview ── */
+.ddp-body {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Coluna esquerda: lista de unidades */
+.ddp-list {
+  width: 248px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estado ativo da unidade */
+.ddp-school.is-active {
+  background: rgba(23,9,88,0.055);
+  border-left-color: #56b68b;
+  padding-left: 26px;
+}
+.ddp-school.is-active .ddp-ico { background: #170958; }
+.ddp-school.is-active .ddp-ico svg { color: #fec722; }
+.ddp-school.is-active .ddp-sname { color: #170958; }
+.ddp-school.is-active .ddp-arr { color: #56b68b; transform: translateX(3px); }
+
+/* Coluna direita: preview da unidade */
+.ddp-preview {
+  flex: 1;
+  position: relative;
+  min-height: 240px;
+  overflow: hidden;
+}
+
+/* Imagens de fundo sobrepostas com fade */
+.ddp-prev-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity .38s ease;
+}
+.ddp-prev-img.hidden { opacity: 0; }
+
+/* Gradiente sobre a imagem */
+.ddp-prev-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(23,9,88,0.08) 0%, rgba(23,9,88,0.72) 100%);
+  z-index: 1;
+}
+
+/* Conteúdo sobre a imagem (nome + botão) */
+.ddp-prev-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 22px 20px;
+}
+
+.ddp-prev-eyebrow {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #56b68b;
+  margin-bottom: 5px;
+}
+
+.ddp-prev-name {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+  margin-bottom: 14px;
+  transition: opacity .25s;
+}
+
+/* Botão "Conheça a Unidade" */
+.ddp-prev-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #fec722;
+  color: #170958;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  padding: 9px 18px;
+  border-radius: 50px;
+  transition: background .22s, transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 14px rgba(254,199,34,0.35);
+}
+.ddp-prev-btn:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+.ddp-prev-btn svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  transition: transform .22s;
+}
+.ddp-prev-btn:hover svg { transform: translateX(2px); }
+
+/* ── Cabeçalho do painel ── */
+.ddp-hd {
+  padding: 14px 20px 11px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: linear-gradient(135deg,rgba(23,9,88,0.035),rgba(86,182,139,0.045));
+}
+
+.ddp-label {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #56b68b;
+  margin-bottom: 2px;
+}
+
+.ddp-desc {
+  display: block;
+  font-size: 11.5px;
+  color: #999;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ── Cards de escola ── */
+.ddp-school {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: background .2s, border-color .2s, padding-left .22s;
+  position: relative;
+}
+
+.ddp-school + .ddp-school {
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.ddp-school:hover {
+  background: rgba(23,9,88,0.04);
+  border-left-color: #56b68b;
+  padding-left: 26px;
+}
+
+/* Ícone */
+.ddp-ico {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: rgba(23,9,88,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background .2s;
+}
+
+.ddp-ico svg {
+  width: 19px;
+  height: 19px;
+  color: #170958;
+  transition: color .2s;
+}
+
+.ddp-school:hover .ddp-ico { background: #170958; }
+.ddp-school:hover .ddp-ico svg { color: #fec722; }
+
+/* Info textual */
+.ddp-sinfo { flex: 1; min-width: 0; }
+
+.ddp-sname {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1a1a2e;
+  line-height: 1.3;
+  margin-bottom: 2px;
+  transition: color .2s;
+}
+
+.ddp-sloc {
+  display: block;
+  font-size: 11px;
+  color: #56b68b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.ddp-school:hover .ddp-sname { color: #170958; }
+
+/* Seta de navegação */
+.ddp-arr {
+  width: 15px;
+  height: 15px;
+  color: #ccc;
+  flex-shrink: 0;
+  transition: color .2s, transform .22s;
+}
+
+.ddp-school:hover .ddp-arr { color: #56b68b; transform: translateX(3px); }
+
+/* ── Rodapé do painel ── */
+.ddp-ft {
+  padding: 10px 20px 13px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  background: rgba(23,9,88,0.025);
+}
+
+.ddp-ft a {
+  font-size: 11px;
+  font-weight: 700;
+  color: #170958;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color .2s, gap .22s;
+}
+
+.ddp-ft a:hover { color: #56b68b; gap: 9px; }
+
+/* ════ MOBILE: Colégios accordion ════ */
+
+#mob-colegio-btn {
+  color: rgba(255,255,255,.85);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 13px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  transition: color .2s;
+}
+
+#mob-colegio-btn:hover { color: #fec722; }
+
+.mob-caret {
+  width: 13px;
+  height: 8px;
+  overflow: visible;
+  transition: transform .25s;
+  flex-shrink: 0;
+}
+
+#mob-colegio-btn.open .mob-caret { transform: rotate(180deg); }
+
+#mob-colegio-list {
+  display: none;
+  flex-direction: column;
+  padding: 4px 0 4px 20px;
+}
+
+#mob-colegio-list.open { display: flex; }
+
+.mob-school-a {
+  color: rgba(255,255,255,.62);
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  transition: color .2s, padding-left .2s;
+  display: block;
+}
+
+.mob-school-a:last-child { border-bottom: none; }
+.mob-school-a:hover { color: #fec722; padding-left: 6px; }
+
+/* ════ NAV SCROLLED: sincronia de cores ════ */
+/* search-btn: sempre no tema escuro */
+
+/* ════════════════════════════════════════════════════════
+   HERO SLIDER — Inspirado no padrão visual do Colégio Positivo
+   4 slides com imagens de fundo, controles premium,
+   Ken Burns effect e transição suave entre slides.
+   ════════════════════════════════════════════════════════ */
+
+/* ── Slider de fundo (Swiper posicionado absolutamente) ── */
+.hero-swiper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-swiper,
+.hero-swiper .swiper-wrapper,
+.hero-swiper .swiper-slide {
+  height: 100%;
+}
+
+/* Imagem de fundo de cada slide com Ken Burns effect */
+.hs-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: scale(1.08);
+  transition: transform 9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* Ken Burns: desacelera o zoom no slide ativo */
+.hero-swiper .swiper-slide-active .hs-img {
+  transform: scale(1.0);
+}
+
+/* ── Overlays de gradiente (variações por slide) ── */
+.hs-ov {
+  position: absolute;
+  inset: 0;
+}
+
+/* Overlay único: gradiente ascendente suave — deixa a imagem respirar */
+.hs-ov-1, .hs-ov-2, .hs-ov-3, .hs-ov-4 {
+  background: linear-gradient(
+    to top,
+    rgba(13,5,53,0.82) 0%,
+    rgba(13,5,53,0.38) 42%,
+    rgba(13,5,53,0.10) 68%,
+    transparent 100%
+  );
+}
+
+/* ── Strip de conteúdo fixo no fundo do hero ── */
+.hs-strip {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 0 44px;
+}
+
+.hs-strip-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.hs-strip-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.52);
+  margin-bottom: 14px;
+}
+
+.hs-strip-title {
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(1.75rem, 4vw, 2.9rem);
+  line-height: 1.18;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.28);
+}
+
+/* ── Setas de navegação lateral ── */
+.hs-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.11);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.24);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.hs-arrow:hover {
+  background: rgba(254,199,34,0.20);
+  border-color: rgba(254,199,34,0.60);
+  color: #fec722;
+  transform: translateY(-50%) scale(1.07);
+}
+
+.hs-arrow:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.hs-arrow svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  pointer-events: none;
+}
+
+.hs-arrow-prev { left: 22px; }
+.hs-arrow-next { right: 22px; }
+
+/* ── Paginação por pontos ── */
+.hs-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.hs-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.32);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.35s ease, background 0.3s ease;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.hs-dot.is-active {
+  width: 28px;
+  background: #fec722;
+}
+
+.hs-dot:hover:not(.is-active) {
+  background: rgba(255,255,255,0.60);
+}
+
+/* ── Indicador de slide (contador) ── */
+.hs-counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.50);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: 32px;
+  right: 28px;
+  z-index: 10;
+}
+
+.hs-counter-cur {
+  color: #fec722;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* Barra de progresso de autoplay */
+.hs-progress-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 10;
+  background: rgba(255,255,255,0.10);
+}
+
+.hs-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #56b68b, #fec722);
+  width: 0%;
+  transition: none;
+}
+
+.hs-progress-bar.running {
+  width: 100%;
+  transition: width 6.5s linear;
+}
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  .hs-arrow-prev { left: 10px; width: 42px; height: 42px; }
+  .hs-arrow-next { right: 10px; width: 42px; height: 42px; }
+  .hs-arrow svg { width: 17px; height: 17px; }
+  .hs-counter { bottom: 22px; right: 16px; }
+  .hs-strip-title { font-size: clamp(1.5rem, 5vw, 2.2rem); }
+  .hs-dot { width: 7px; height: 7px; }
+  .hs-dot.is-active { width: 22px; }
+}
+
+@media (max-width: 480px) {
+  .hs-arrow { display: none; }
+}
+
+</style>
+</head>
+
+<body class="bg-white">
+
+<!-- ══════════════════════════════════════
+     HEADER
+══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     HEADER — Refinado: logo premium + dropdown Colégios
+══════════════════════════════════════ -->
+<header id="hdr">
+  <div id="hdr-inner">
+
+    <!-- ── Bloco da Marca — estilo Colégio Positivo ── -->
+    <a href="#" class="logo-block" aria-label="Colégio Madre Cecília Cros — Página inicial">
+
+      <!-- Aba laranja com grid de pontos 3×3 -->
+      <span class="logo-deco" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="2"  cy="2"  r="2" fill="white" fill-opacity="0.85"/>
+          <circle cx="11" cy="2"  r="2" fill="white" fill-opacity="0.85"/>
+          <circle cx="20" cy="2"  r="2" fill="white" fill-opacity="0.85"/>
+          <circle cx="2"  cy="11" r="2" fill="white" fill-opacity="0.85"/>
+          <circle cx="11" cy="11" r="2" fill="white" fill-opacity="0.85"/>
+          <circle cx="20" cy="11" r="2" fill="white" fill-opacity="0.85"/>
+          <circle cx="2"  cy="20" r="2" fill="white" fill-opacity="0.85"/>
+          <circle cx="11" cy="20" r="2" fill="white" fill-opacity="0.85"/>
+          <circle cx="20" cy="20" r="2" fill="white" fill-opacity="0.85"/>
+        </svg>
+      </span>
+
+      <!-- Área branca com a logo -->
+      <span class="logo-img-wrap">
+        <img src="assets/logo_c0e703bafd98.png"
+             alt="Colégio Madre Cecília Cros"
+             width="auto" height="44"/>
+      </span>
+
+    </a>
+
+    <!-- ── Navegação Desktop ── -->
+    <nav class="hidden lg:flex items-center gap-6" aria-label="Menu principal">
+      <a href="#institucional" class="nl">Institucional</a>
+      <a href="#ensino"        class="nl">Ensino</a>
+
+      <!-- ── Dropdown: Colégios ──
+           Estilo premium inspirado no Colégio Positivo:
+           painel com card de escola, hover suave e caret animado. -->
+      <div class="dd-wrap" id="dd-colegio">
+        <button class="dd-trigger"
+                id="dd-trigger-colegio"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="panel-colegio">
+          Colégios
+          <!-- Caret SVG: chevron animado -->
+          <svg class="dd-caret" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- ── Mega Menu: Colégios ── -->
+        <div class="dd-panel" id="panel-colegio" role="menu" aria-label="Colégios da rede">
+
+          <!-- Cabeçalho do painel -->
+          <div class="ddp-hd">
+            <span class="ddp-label">Rede de Escolas</span>
+            <span class="ddp-desc">Congregação Missionárias Filhas da Sagrada Família de Nazaré</span>
+          </div>
+
+          <!-- Corpo: lista + preview -->
+          <div class="ddp-body">
+
+            <!-- Coluna esquerda: lista de unidades -->
+            <div class="ddp-list" role="list">
+
+              <!-- Unidade 1: Jesuítas/PR — ativa por padrão -->
+              <a href="#"
+                 class="ddp-school is-active"
+                 role="menuitem"
+                 data-school="jesuits"
+                 data-img="imagens/colegiojesuitas.png"
+                 data-name="Escola Nazaré — Jesuítas/PR">
+                <div class="ddp-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                </div>
+                <div class="ddp-sinfo">
+                  <span class="ddp-sname">Escola Nazaré</span>
+                  <span class="ddp-sloc">Jesuítas &middot; PR</span>
+                </div>
+                <svg class="ddp-arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+
+              <!-- Unidade 2: Campo Grande/MS -->
+              <a href="#"
+                 class="ddp-school"
+                 role="menuitem"
+                 data-school="campogrande"
+                 data-img="imagens/colegiocampogrande.png"
+                 data-name="Escola Nazaré — Campo Grande">
+                <div class="ddp-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                </div>
+                <div class="ddp-sinfo">
+                  <span class="ddp-sname">Escola Nazaré</span>
+                  <span class="ddp-sloc">Campo Grande &middot; MS</span>
+                </div>
+                <svg class="ddp-arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+
+              <!-- Rodapé da lista -->
+              <div class="ddp-ft" style="margin-top:auto;">
+                <a href="#">
+                  Ver todas as unidades
+                  <svg width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true">
+                    <path d="M1 5h10M7 1l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+
+            </div><!-- /.ddp-list -->
+
+            <!-- Coluna direita: preview da unidade selecionada -->
+            <div class="ddp-preview" aria-hidden="true">
+
+              <!-- Imagem: Jesuítas (visível por padrão) -->
+              <div class="ddp-prev-img"
+                   id="prev-jesuits"
+                   style="background-image:url('imagens/colegiojesuitas.png')">
+              </div>
+
+              <!-- Imagem: Campo Grande (oculta) -->
+              <div class="ddp-prev-img hidden"
+                   id="prev-campogrande"
+                   style="background-image:url('imagens/colegiocampogrande.png')">
+              </div>
+
+              <!-- Gradiente e conteúdo sobre a imagem -->
+              <div class="ddp-prev-gradient"></div>
+              <div class="ddp-prev-content">
+                <span class="ddp-prev-eyebrow">Conheça a unidade</span>
+                <span class="ddp-prev-name" id="prev-school-name">Escola Nazaré — Jesuítas/PR</span>
+                <a href="#" class="ddp-prev-btn">
+                  Saiba mais
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 8h10M9 4l4 4-4 4"/>
+                  </svg>
+                </a>
+              </div>
+
+            </div><!-- /.ddp-preview -->
+
+          </div><!-- /.ddp-body -->
+
+        </div><!-- /.dd-panel -->
+      </div><!-- /.dd-wrap -->
+
+      <a href="#matriculas"   class="nl">Matrículas</a>
+      <a href="#agendamento"  class="nl">Agendamento</a>
+      <a href="#conquistas"   class="nl">Conquistas</a>
+      <a href="#contato"      class="nl">Contato</a>
+    </nav>
+
+    <!-- ── Ações (CTA + Search + Hamburger) ── -->
+    <div class="flex items-center gap-2.5">
+
+      <!-- Busca -->
+      <button id="search-btn"
+        class="hidden md:flex items-center justify-center w-9 h-9 rounded-full border border-white/25 text-white/75 hover:text-gold hover:border-gold transition-all duration-200"
+        aria-label="Buscar">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+      </button>
+
+      <!-- CTA principal -->
+      <a href="http://www.professus.com.br/" target="_blank" class="btn-aluno">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Área do Aluno
+      </a>
+
+      <!-- Hambúrguer mobile -->
+      <button id="ham"
+        class="lg:hidden flex flex-col gap-1.5 p-1.5 z-[1001] relative"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mob-menu">
+        <span id="b1" class="block w-5 h-0.5 bg-white rounded transition-all duration-300 origin-center"></span>
+        <span id="b2" class="block w-5 h-0.5 bg-white rounded transition-all duration-300"></span>
+        <span id="b3" class="block w-4 h-0.5 bg-white rounded transition-all duration-300 ml-auto origin-center"></span>
+      </button>
+
+    </div>
+  </div><!-- /#hdr-inner -->
+</header>
+
+<!-- ── Menu Mobile ── -->
+<div id="mob-menu" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+
+  <a href="#institucional" class="mnl">Institucional</a>
+  <a href="#ensino"        class="mnl">Ensino</a>
+
+  <!-- Colégios: accordion mobile -->
+  <button id="mob-colegio-btn"
+          aria-expanded="false"
+          aria-controls="mob-colegio-list">
+    Colégios
+    <!-- Caret SVG -->
+    <svg class="mob-caret" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+      <path d="M1 1l5 6 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div id="mob-colegio-list">
+    <a href="#" class="mob-school-a">Escola Nazaré — Jesuítas, PR</a>
+    <a href="#" class="mob-school-a">Escola Nazaré — Campo Grande, MS</a>
+  </div>
+
+  <a href="#matriculas"   class="mnl">Matrículas</a>
+  <a href="#agendamento"  class="mnl">Agendamento</a>
+  <a href="#conquistas"   class="mnl">Conquistas</a>
+  <a href="#contato"      class="mnl">Contato</a>
+
+  <div class="mt-8">
+    <a href="http://www.professus.com.br/" target="_blank" class="btn-y w-full justify-center">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <rect x="3" y="11" width="18" height="11" rx="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      Área do Aluno
+    </a>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════
+     HERO PRINCIPAL
+══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     HERO SLIDER — 4 slides institucionais
+     Inspirado no padrão visual do Colégio Positivo:
+     Ken Burns effect, fade crossfade, controles premium,
+     barra de progresso e animação de conteúdo por slide.
+══════════════════════════════════════ -->
+<section id="hero">
+
+  <!-- ══ SLIDER DE FUNDO (Swiper) ══
+       Posicionado absolutamente atrás do conteúdo.
+       Cada slide tem imagem própria + overlay de gradiente. -->
+  <div class="hero-swiper swiper" id="hero-swiper" aria-hidden="true">
+    <div class="swiper-wrapper">
+
+      <!-- Slide 1: Ensino Infantil (hero2 → agora primeiro) -->
+      <div class="swiper-slide">
+        <div class="hs-img" style="background-image:url('imagens/foto01.jpg'); background-position: center 30%;"></div>
+        <div class="hs-ov hs-ov-1"></div>
+      </div>
+
+      <!-- Slide 2: foto04 (substitui banner 150 anos) -->
+      <div class="swiper-slide">
+        <div class="hs-img" style="background-image:url('imagens/foto04.png')"></div>
+        <div class="hs-ov hs-ov-2"></div>
+      </div>
+
+      <!-- Slide 3: Ensino Fundamental -->
+      <div class="swiper-slide">
+        <div class="hs-img" style="background-image:url('imagens/foto02.jpg')"></div>
+        <div class="hs-ov hs-ov-3"></div>
+      </div>
+
+      <!-- Slide 4: foto05 (substitui foto03) -->
+      <div class="swiper-slide">
+        <div class="hs-img" style="background-image:url('imagens/foto05.png')"></div>
+        <div class="hs-ov hs-ov-4"></div>
+      </div>
+
+    </div>
+  </div><!-- /.hero-swiper -->
+
+  <!-- ══ BARRA DE PROGRESSO DE AUTOPLAY ══ -->
+  <div class="hs-progress-wrap" aria-hidden="true">
+    <div class="hs-progress-bar" id="hs-progress"></div>
+  </div>
+
+  <!-- ══ ANÉIS DECORATIVOS ══ -->
+  <div class="absolute top-1/4 right-8 w-72 h-72 rounded-full border border-white/5 pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute bottom-1/3 right-24 w-40 h-40 rounded-full border border-teal/10 pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute top-1/3 left-8 w-56 h-56 rounded-full border border-white/5 pointer-events-none" aria-hidden="true"></div>
+
+  <!-- ══ STRIP DE CONTEÚDO — fundo do hero ══ -->
+  <div class="hs-strip">
+    <div class="hs-strip-inner">
+
+      <p class="hs-strip-label">Colégio Madre Cecília Cros · Curitiba, PR</p>
+
+      <h1 class="hs-strip-title" id="h-title" style="opacity:0">
+        Encontre o melhor colégio<br/>para seus filhos
+      </h1>
+
+      <!-- ── Search widget ── -->
+      <div id="h-widget" style="opacity:0" class="sw max-w-3xl mx-auto p-5 md:p-6">
+        <p class="text-white/65 text-xs font-medium mb-4 text-left">Encontre o ensino ideal para seu filho:</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+          <div>
+            <label class="text-white/55 text-xs font-medium block mb-1.5">Nível de ensino</label>
+            <select class="sw-sel">
+              <option value="">Selecione o nível</option>
+              <option>Educação Infantil</option>
+              <option>Ensino Fundamental I</option>
+              <option>Ensino Fundamental II</option>
+              <option>Ensino Médio</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-white/55 text-xs font-medium block mb-1.5">Período</label>
+            <select class="sw-sel">
+              <option value="">Selecione</option>
+              <option>Manhã</option>
+              <option>Tarde</option>
+              <option>Integral</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-white/55 text-xs font-medium block mb-1.5">Ano / Série</label>
+            <select class="sw-sel">
+              <option value="">Selecione</option>
+              <option>Maternal / Nível I–III</option>
+              <option>1º ao 5º Ano</option>
+              <option>6º ao 9º Ano</option>
+              <option>1ª a 3ª Série EM</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="#agendamento" class="btn-y flex-1 justify-center">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Agendar Visita Gratuita
+          </a>
+          <a href="tel:4133545464" class="btn-o flex-1 justify-center">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l1.88-1.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (41) 3354-5464
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Paginação por pontos ── -->
+      <div class="hs-pagination" id="hs-dots" role="tablist" aria-label="Slides do banner" style="margin-top:20px">
+        <button class="hs-dot is-active" data-go="0" role="tab" aria-selected="true"  aria-label="Slide 1"></button>
+        <button class="hs-dot"           data-go="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+        <button class="hs-dot"           data-go="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+        <button class="hs-dot"           data-go="3" role="tab" aria-selected="false" aria-label="Slide 4"></button>
+      </div>
+
+    </div>
+  </div><!-- /.hs-strip -->
+
+  <!-- ══ SETAS DE NAVEGAÇÃO LATERAL ══ -->
+  <button class="hs-arrow hs-arrow-prev" id="hs-prev" aria-label="Slide anterior">
+    <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button class="hs-arrow hs-arrow-next" id="hs-next" aria-label="Próximo slide">
+    <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+
+  <!-- Contador de slides (desktop) -->
+  <div class="hs-counter hidden md:flex" aria-hidden="true">
+    <span class="hs-counter-cur" id="hs-cur">01</span>
+    <span>/</span>
+    <span>04</span>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════
+     NOTÍCIAS — Carrossel Premium
+══════════════════════════════════════ -->
+<section class="py-20 bg-white px-5" id="noticias">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Cabeçalho: título à esquerda + setas à direita -->
+    <div class="news-section-header" data-aos="fade-up">
+      <div>
+        <span class="slbl">Blog &amp; Notícias</span>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mt-1">Notícias sobre o colégio</h2>
+      </div>
+      <div class="news-arrows">
+        <button class="news-arrow" id="news-prev" aria-label="Notícia anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="news-arrow" id="news-next" aria-label="Próxima notícia">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Swiper wrapper -->
+    <div class="swiper news-swiper">
+      <div class="swiper-wrapper">
+
+        <!-- Card 1 -->
+        <div class="swiper-slide">
+          <a href="https://colegiomadrececiliacros.com.br/noticias-e-avisos" target="_blank" class="nc" aria-label="Leia mais sobre a notícia 1">
+            <div class="nc-img">
+              <img src="imagens/noticia01.png" alt="Projeto educacional no Colégio Madre Cecília Cros" loading="lazy"/>
+            </div>
+            <div class="nc-body">
+              <span class="nc-tag">Pedagogia · 2025</span>
+              <h3 class="nc-title">Projeto educacional fortalece o aprendizado e a criatividade dos alunos</h3>
+              <span class="nc-link">
+                Leia mais
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="swiper-slide">
+          <a href="https://colegiomadrececiliacros.com.br/noticias-e-avisos" target="_blank" class="nc" aria-label="Leia mais sobre a notícia 2">
+            <div class="nc-img">
+              <img src="imagens/noticia02.png" alt="Atividades esportivas no Colégio Madre Cecília Cros" loading="lazy"/>
+            </div>
+            <div class="nc-body">
+              <span class="nc-tag">Esportes · 2025</span>
+              <h3 class="nc-title">Atividades esportivas estimulam o desenvolvimento integral e o trabalho em equipe</h3>
+              <span class="nc-link">
+                Leia mais
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="swiper-slide">
+          <a href="https://colegiomadrececiliacros.com.br/noticias-e-avisos" target="_blank" class="nc" aria-label="Leia mais sobre a notícia 3">
+            <div class="nc-img">
+              <img src="imagens/noticia03.png" alt="Vivências pedagógicas no Colégio Madre Cecília Cros" loading="lazy"/>
+            </div>
+            <div class="nc-body">
+              <span class="nc-tag">Projetos · 2025</span>
+              <h3 class="nc-title">Vivências pedagógicas ampliam o conhecimento e preparam os alunos para o futuro</h3>
+              <span class="nc-link">
+                Leia mais
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="swiper-slide">
+          <a href="https://colegiomadrececiliacros.com.br/noticias-e-avisos" target="_blank" class="nc" aria-label="Leia mais sobre a notícia 4">
+            <div class="nc-img">
+              <img src="imagens/noticia04.png" alt="Integração entre alunos e comunidade no Colégio Madre Cecília Cros" loading="lazy"/>
+            </div>
+            <div class="nc-body">
+              <span class="nc-tag">Comunidade · 2025</span>
+              <h3 class="nc-title">Escola promove integração entre alunos, famílias e comunidade local</h3>
+              <span class="nc-link">
+                Leia mais
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+
+      </div><!-- /.swiper-wrapper -->
+
+      <!-- Paginação inferior -->
+      <div class="swiper-pagination" id="news-dots"></div>
+
+    </div><!-- /.news-swiper -->
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CONQUISTAS — Carrossel Premium
+══════════════════════════════════════ -->
+<section class="cq-section py-20 px-5" id="conquistas">
+  <div class="max-w-7xl mx-auto" style="position:relative;z-index:1;">
+
+    <!-- Cabeçalho: label + título à esquerda | setas à direita -->
+    <div class="cq-header">
+      <div class="cq-header-left">
+        <span class="slbl">Nossa trajetória</span>
+        <h2 class="cq-title">Nossas Conquistas</h2>
+      </div>
+      <div class="cq-arrows">
+        <button class="cq-arrow" id="cq-prev" aria-label="Conquista anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="cq-arrow" id="cq-next" aria-label="Próxima conquista">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Swiper carrossel -->
+    <div class="swiper cq-swiper">
+      <div class="swiper-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <a href="https://colegiomadrececiliacros.com.br/noticias-e-avisos" target="_blank" class="cq-card">
+            <div class="cq-img-wrap">
+              <img src="imagens/conq01.png" alt="Conquistas do Colégio Madre Cecília Cros" loading="lazy"/>
+            </div>
+            <div class="cq-caption">
+              <span class="cq-caption-tag">Excelência Acadêmica</span>
+              <p class="cq-caption-title">Alunos premiados nas principais olimpíadas do conhecimento do país</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <a href="https://colegiomadrececiliacros.com.br/noticias-e-avisos" target="_blank" class="cq-card">
+            <div class="cq-img-wrap">
+              <img src="imagens/conq02.png" alt="Conquistas do Colégio Madre Cecília Cros" loading="lazy"/>
+            </div>
+            <div class="cq-caption">
+              <span class="cq-caption-tag">ENEM &amp; Vestibulares</span>
+              <p class="cq-caption-title">Índice de aprovação entre os mais altos de Curitiba, ano após ano</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <a href="https://colegiomadrececiliacros.com.br/noticias-e-avisos" target="_blank" class="cq-card">
+            <div class="cq-img-wrap">
+              <img src="imagens/conq03.png" alt="Conquistas do Colégio Madre Cecília Cros" loading="lazy"/>
+            </div>
+            <div class="cq-caption">
+              <span class="cq-caption-tag">Esportes &amp; Cultura</span>
+              <p class="cq-caption-title">Medalhas em competições esportivas e culturais regionais e nacionais</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+          <a href="https://colegiomadrececiliacros.com.br/noticias-e-avisos" target="_blank" class="cq-card">
+            <div class="cq-img-wrap">
+              <img src="imagens/conq04.png" alt="Conquistas do Colégio Madre Cecília Cros" loading="lazy"/>
+            </div>
+            <div class="cq-caption">
+              <span class="cq-caption-tag">Rede Internacional</span>
+              <p class="cq-caption-title">Parte da Rede Nazaré presente em 3 países, com intercâmbios internacionais</p>
+            </div>
+          </a>
+        </div>
+
+      </div><!-- /.swiper-wrapper -->
+
+      <!-- Paginação com bolinha animada -->
+      <div class="swiper-pagination" id="cq-dots"></div>
+
+    </div><!-- /.cq-swiper -->
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     4 INFO CARDS
+══════════════════════════════════════ -->
+<section class="relative bg-gradient-to-b from-slate-50 to-white py-16 px-5" id="ensino">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-12" data-aos="fade-up">
+      <span class="slbl">Por que o Madre Cecília Cros?</span>
+      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mt-1">Diferenciais que fazem a diferença</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div class="ic" data-aos="fade-up" data-aos-delay="0">
+        <div class="ic-icon bg-gradient-to-br from-brand to-blue-700">
+          <svg class="w-5 h-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+        </div>
+        <h3 class="font-bold text-gray-900 text-base mb-2">Ensino Bilíngue</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Formação bilíngue integrada ao currículo, preparando alunos para um mundo globalizado.</p>
+        <div class="mt-4 flex items-center gap-1 text-brand text-xs font-semibold">
+          <span>Saiba mais</span>
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="ic" data-aos="fade-up" data-aos-delay="100">
+        <div class="ic-icon bg-gradient-to-br from-yellow-400 to-orange-500">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M17 5 12 2 7 5l-5 3 5 3 5 3 5-3 5-3-5-3z"/></svg>
+        </div>
+        <h3 class="font-bold text-gray-900 text-base mb-2">Conquistas</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Histórico de excelência em olimpíadas, vestibulares e projetos de alto impacto.</p>
+        <div class="mt-4 flex items-center gap-1 text-yellow-600 text-xs font-semibold">
+          <span>Ver conquistas</span>
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="ic" data-aos="fade-up" data-aos-delay="200">
+        <div class="ic-icon bg-gradient-to-br from-teal to-green-600">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <h3 class="font-bold text-gray-900 text-base mb-2">Atividades Extracurriculares</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Arte, esporte, música e tecnologia. Formação integral além da sala de aula.</p>
+        <div class="mt-4 flex items-center gap-1 text-teal text-xs font-semibold">
+          <span>Ver atividades</span>
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="ic" data-aos="fade-up" data-aos-delay="300">
+        <div class="ic-icon bg-gradient-to-br from-orange-400 to-red-500">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3 class="font-bold text-gray-900 text-base mb-2">Centro Pedagógico</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Projeto pedagógico baseado nas Inteligências Múltiplas de Howard Gardner.</p>
+        <div class="mt-4 flex items-center gap-1 text-orange-600 text-xs font-semibold">
+          <span>Conheça a proposta</span>
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     ENSINO MÉDIO (dark section)
+══════════════════════════════════════ -->
+<section class="py-20 px-5" style="background:#170958;" id="medio">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="lbadge mx-auto">
+        <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="#fec722" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Ensino Médio
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black text-white mt-4 mb-4 leading-tight">
+        Prontos para o<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">futuro</span>
+      </h2>
+      <p class="text-white/65 text-base max-w-2xl mx-auto leading-relaxed">
+        Preparação completa para o ENEM e vestibulares, aliada à formação humana e espiritual que define o perfil do egresso Madre Cecília Cros.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div class="bg-white/8 border border-white/10 rounded-3xl p-6 hover:bg-white/12 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+        <div class="w-11 h-11 rounded-2xl bg-yellow-400/20 flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-base mb-2">Preparação ENEM</h3>
+        <p class="text-white/55 text-sm leading-relaxed">Simulados mensais, redação monitorada e banco de questões alinhado ao ENEM e vestibulares nacionais.</p>
+      </div>
+
+      <div class="bg-white/8 border border-white/10 rounded-3xl p-6 hover:bg-white/12 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="80">
+        <div class="w-11 h-11 rounded-2xl bg-teal/20 flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-base mb-2">Mentoria Acadêmica</h3>
+        <p class="text-white/55 text-sm leading-relaxed">Acompanhamento personalizado, orientação vocacional e psicopedagogia para cada aluno.</p>
+      </div>
+
+      <div class="bg-white/8 border border-white/10 rounded-3xl p-6 hover:bg-white/12 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="160">
+        <div class="w-11 h-11 rounded-2xl bg-orange/20 flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M17 5 12 2 7 5l-5 3 5 3 5 3 5-3 5-3-5-3z"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-base mb-2">Olimpíadas Científicas</h3>
+        <p class="text-white/55 text-sm leading-relaxed">Medalhas em olimpíadas nacionais de Matemática, Física, Química, Biologia e Português.</p>
+      </div>
+
+      <div class="bg-white/8 border border-white/10 rounded-3xl p-6 hover:bg-white/12 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+        <div class="w-11 h-11 rounded-2xl bg-purple-400/20 flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-purple-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-base mb-2">Laboratórios Modernos</h3>
+        <p class="text-white/55 text-sm leading-relaxed">Labs de Física, Química e Biologia equipados para experimentação prática e científica.</p>
+      </div>
+
+      <div class="bg-white/8 border border-white/10 rounded-3xl p-6 hover:bg-white/12 transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="80">
+        <div class="w-11 h-11 rounded-2xl bg-green-400/20 flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+        </div>
+        <h3 class="text-white font-bold text-base mb-2">Internacionalização</h3>
+        <p class="text-white/55 text-sm leading-relaxed">Intercâmbios, certificações e contato com escolas Nazaré em Portugal, Espanha e mais países.</p>
+      </div>
+
+      <!-- CTA card -->
+      <div class="bg-gradient-to-br from-gold to-orange rounded-3xl p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="160">
+        <div>
+          <div class="w-11 h-11 rounded-2xl bg-white/20 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <h3 class="text-brand font-bold text-base mb-2">Quero saber mais</h3>
+          <p class="text-brand/70 text-sm leading-relaxed">Agende uma visita e conheça nossa estrutura, equipe e proposta pedagógica.</p>
+        </div>
+        <a href="#agendamento" class="mt-5 bg-brand text-white font-bold text-sm rounded-xl px-5 py-3 text-center hover:bg-brand-dark transition-colors inline-block">
+          Agendar visita
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave" style="background:#170958;"><svg viewBox="0 0 1440 56" fill="none" preserveAspectRatio="none"><path d="M0 40C360 0 1080 56 1440 20L1440 56 0 56Z" fill="#ffffff"/></svg></div>
+
+
+<!-- ══════════════════════════════════════
+     INTELIGÊNCIAS MÚLTIPLAS
+══════════════════════════════════════ -->
+<section class="py-20 bg-gradient-to-br from-slate-50 to-blue-50/30 px-5" id="institucional">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-12" data-aos="fade-up">
+      <span class="slbl">Nossa abordagem</span>
+      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mt-1">Inteligências Múltiplas</h2>
+      <p class="text-gray-500 mt-3 max-w-xl mx-auto text-sm leading-relaxed">
+        Baseada na teoria de Howard Gardner, nossa metodologia reconhece e desenvolve os 8 tipos de inteligência, respeitando a individualidade de cada aluno.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+      <!-- 8 cards -->
+      <div class="intel-card" data-aos="zoom-in" data-aos-delay="0">
+        <div class="intel-icon"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83" stroke="#fec722"/></svg></div>
+        <p class="font-bold text-gray-800 text-xs">Lógico-Matemática</p>
+      </div>
+      <div class="intel-card" data-aos="zoom-in" data-aos-delay="45">
+        <div class="intel-icon"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#fec722" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <p class="font-bold text-gray-800 text-xs">Linguístico-Verbal</p>
+      </div>
+      <div class="intel-card" data-aos="zoom-in" data-aos-delay="90">
+        <div class="intel-icon"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#fec722" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <p class="font-bold text-gray-800 text-xs">Corporal-Cinestésica</p>
+      </div>
+      <div class="intel-card" data-aos="zoom-in" data-aos-delay="135">
+        <div class="intel-icon"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#fec722" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <p class="font-bold text-gray-800 text-xs">Visual-Espacial</p>
+      </div>
+      <div class="intel-card" data-aos="zoom-in" data-aos-delay="180">
+        <div class="intel-icon"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#fec722" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <p class="font-bold text-gray-800 text-xs">Musical</p>
+      </div>
+      <div class="intel-card" data-aos="zoom-in" data-aos-delay="225">
+        <div class="intel-icon"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#fec722" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <p class="font-bold text-gray-800 text-xs">Interpessoal</p>
+      </div>
+      <div class="intel-card" data-aos="zoom-in" data-aos-delay="270">
+        <div class="intel-icon"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#fec722" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <p class="font-bold text-gray-800 text-xs">Intrapessoal</p>
+      </div>
+      <div class="intel-card" data-aos="zoom-in" data-aos-delay="315">
+        <div class="intel-icon"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#fec722" stroke-width="1.8"><path d="M17 8C8 10 5.9 16.17 3.82 19.5A2 2 0 0 0 5 22h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2zM12 12c0 0-2-4 0-7"/></svg></div>
+        <p class="font-bold text-gray-800 text-xs">Naturalista</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- ══════════════════════════════════════
+     CONTATO / AGENDAMENTO
+══════════════════════════════════════ -->
+<section class="py-20 bg-gray-50 px-5" id="agendamento">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
+      <!-- Info -->
+      <div data-aos="fade-right">
+        <span class="slbl">Fale conosco</span>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mt-1 mb-5">Venha nos conhecer</h2>
+        <p class="text-gray-600 text-sm leading-relaxed mb-8">
+          Nossa equipe está pronta para apresentar o colégio, tirar dúvidas sobre o processo de matrícula e ajudar sua família a dar o melhor passo na educação dos seus filhos.
+        </p>
+
+        <div class="space-y-5 mb-8">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-2xl bg-brand flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="font-bold text-gray-900 text-sm">Endereço</p>
+              <p class="text-gray-600 text-sm">R. Benvenuto Gusso, 1634 · Boa Vista<br/>Curitiba - PR, 82540-080</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-2xl bg-teal flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l1.88-1.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <p class="font-bold text-gray-900 text-sm">Telefone</p>
+              <a href="tel:4133545464" class="text-gray-600 text-sm hover:text-brand transition-colors">(41) 3354-5464</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-2xl bg-gold flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <p class="font-bold text-gray-900 text-sm">E-mail</p>
+              <a href="mailto:contato@colegiomadrececiliacros.com.br" class="text-gray-600 text-sm hover:text-brand transition-colors break-all">contato@colegiomadrececiliacros.com.br</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-2xl bg-green-500 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div>
+              <p class="font-bold text-gray-900 text-sm">WhatsApp</p>
+              <a href="https://api.whatsapp.com/send?phone=5541987441571" target="_blank" class="text-gray-600 text-sm hover:text-green-600 transition-colors">(41) 98744-1571</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social -->
+        <div class="flex gap-3" id="contato">
+          <a href="https://www.facebook.com/Colegio-Madre-Cecilia-Cros-111462393892489" target="_blank"
+             class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/colegiomadrececiliacros/" target="_blank"
+             class="w-10 h-10 rounded-xl text-white flex items-center justify-center hover:opacity-90 transition-opacity"
+             style="background:linear-gradient(135deg,#e1306c,#fd1d1d,#fcb045)">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=5541987441571" target="_blank"
+             class="w-10 h-10 rounded-xl bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div data-aos="fade-left">
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-7 md:p-8">
+          <h3 class="font-black text-gray-900 text-xl mb-6">Agendar visita</h3>
+          <form id="visit-form" onsubmit="return submitForm(event)">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Nome completo *</label>
+                <input type="text" required placeholder="Seu nome" class="fi"/>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">WhatsApp *</label>
+                <input type="tel" required placeholder="(41) 9xxxx-xxxx" class="fi"/>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">E-mail *</label>
+              <input type="email" required placeholder="seu@email.com" class="fi"/>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Nível de ensino</label>
+                <select class="fi appearance-none">
+                  <option>Educação Infantil</option>
+                  <option>Fundamental I (1º–5º)</option>
+                  <option>Fundamental II (6º–9º)</option>
+                  <option>Ensino Médio</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Preferência de visita</label>
+                <select class="fi appearance-none">
+                  <option>Manhã (8h–12h)</option>
+                  <option>Tarde (13h–17h)</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-6">
+              <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide block mb-1.5">Mensagem</label>
+              <textarea rows="3" placeholder="Dúvidas ou observações..." class="fi resize-none"></textarea>
+            </div>
+            <button type="submit" id="form-btn" class="btn-p w-full justify-center text-sm py-3.5">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Solicitar agendamento
+            </button>
+          </form>
+          <p id="form-ok" class="hidden text-center text-green-600 font-semibold text-sm mt-4 bg-green-50 rounded-xl p-3">
+            ✓ Solicitação enviada! Entraremos em contato em breve.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer style="background:#0d0535;">
+  <div class="max-w-7xl mx-auto px-5 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand -->
+      <div>
+        <img src="assets/logo_c0e703bafd98.png" alt="Colégio Madre Cecília Cros" class="h-18 w-auto object-contain mb-4" style="height:72px;"/>
+        <p class="text-white/55 text-xs leading-relaxed mb-5">Congregação Missionárias Filhas da Sagrada Família de Nazaré.<br/>Formando líderes desde 1983.</p>
+        <img src="assets/logomissionariasnazare_89450f3b7cce.png" alt="Missionárias Nazaré" class="h-12 w-auto object-contain opacity-70"/>
+      </div>
+
+      <!-- Menu -->
+      <div>
+        <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-5">Menu</h4>
+        <ul class="space-y-2.5">
+          <li><a href="inicio"       class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Início</a></li>
+          <li><a href="escola"       class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>A Escola</a></li>
+          <li><a href="nossa-historia" class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Nossa História</a></li>
+          <li><a href="proposta-pedagogica" class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Proposta Pedagógica</a></li>
+          <li><a href="noticias-e-avisos" class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Notícias</a></li>
+          <li><a href="fale-conosco" class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Fale Conosco</a></li>
+        </ul>
+      </div>
+
+      <!-- Ensino -->
+      <div>
+        <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-5">Níveis de Ensino</h4>
+        <ul class="space-y-2.5">
+          <li><a href="educacao-infantil"     class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Educação Infantil</a></li>
+          <li><a href="educacao-fundamental-1" class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Fundamental I</a></li>
+          <li><a href="educacao-fundamental-2" class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Fundamental II</a></li>
+          <li><a href="ensino-medio"          class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Ensino Médio</a></li>
+        </ul>
+        <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-4 mt-8">Serviços</h4>
+        <ul class="space-y-2.5">
+          <li><a href="uniforme"          class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Uniforme</a></li>
+          <li><a href="horario-de-aulas"  class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-2"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"/></svg>Horário de Aulas</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-5">Contato</h4>
+        <ul class="space-y-4 mb-6">
+          <li class="flex items-start gap-3">
+            <svg class="w-3.5 h-3.5 text-gold mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l1.88-1.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:4133545464" class="text-white/55 text-xs hover:text-gold transition-colors">(41) 3354-5464</a>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-3.5 h-3.5 text-gold mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:contato@colegiomadrececiliacros.com.br" class="text-white/55 text-xs hover:text-gold transition-colors break-all">contato@colegiomadrececiliacros.com.br</a>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-3.5 h-3.5 text-gold mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="text-white/55 text-xs">R. Benvenuto Gusso, 1634<br/>Boa Vista, Curitiba - PR</span>
+          </li>
+        </ul>
+        <div class="flex gap-2">
+          <a href="https://www.facebook.com/Colegio-Madre-Cecilia-Cros-111462393892489" target="_blank"
+             class="w-8 h-8 rounded-xl bg-white/8 text-white/55 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/colegiomadrececiliacros/" target="_blank"
+             class="w-8 h-8 rounded-xl bg-white/8 text-white/55 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-all">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=5541987441571" target="_blank"
+             class="w-8 h-8 rounded-xl bg-white/8 text-white/55 flex items-center justify-center hover:bg-green-500 hover:text-white transition-all">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="border-t border-white/8 pt-7 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-white/35 text-xs">© 2025 Colégio Madre Cecília Cros · CNPJ 78.004.074/0007-89 · Todos os direitos reservados</p>
+      <a href="http://www.professus.com.br/" target="_blank" class="text-white/50 text-xs hover:text-gold transition-colors flex items-center gap-1.5">
+        <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Área do Aluno
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Float Buttons -->
+<a href="https://api.whatsapp.com/send?phone=5541987441571&text=Olá" target="_blank"
+   class="float-btn fixed bottom-8 right-0 flex items-center gap-2 px-4 py-3 rounded-l-2xl shadow-lg font-semibold text-sm text-white z-50 hover:brightness-110 transition-all"
+   style="background:#25D366; animation-delay:.1s;">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  WhatsApp
+</a>
+
+<a href="#matriculas"
+   class="float-btn fixed bottom-24 right-0 flex items-center gap-2 px-4 py-3 rounded-l-2xl shadow-lg font-bold text-sm z-50 hover:opacity-90 transition-all"
+   style="background:linear-gradient(135deg,#fec722,#fe8717); color:#170958; animation-delay:.3s;">
+  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+  Matrículas 2025
+</a>
+
+
+<!-- ══════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════ -->
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Swiper -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+// ── AOS ──
+AOS.init({ duration: 680, easing: 'ease-out-cubic', once: true, offset: 50 });
+
+// Fallback: se AOS não animar (CDN falhou), torna elementos visíveis após 2s
+setTimeout(() => {
+  document.querySelectorAll('[data-aos]').forEach(el => {
+    if (!el.classList.contains('aos-animate')) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.style.transition = 'none';
+    }
+  });
+}, 2000);
+
+// ── Swiper Notícias ──
+try {
+  new Swiper('.news-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    grabCursor: true,
+    loop: false,
+    navigation: {
+      prevEl: '#news-prev',
+      nextEl: '#news-next',
+    },
+    pagination: {
+      el: '#news-dots',
+      clickable: true,
+    },
+    breakpoints: {
+      640:  { slidesPerView: 2, spaceBetween: 20 },
+      1024: { slidesPerView: 3, spaceBetween: 24 },
+    },
+  });
+} catch(e) { console.warn('News swiper:', e); }
+
+// ── Swiper Testimonials ──
+try {
+  new Swiper('.swiper-test', {
+    slidesPerView: 1, spaceBetween: 20,
+    pagination: { el: '#test-dots', clickable: true },
+    breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+    autoplay: { delay: 5500, disableOnInteraction: false },
+    loop: true,
+  });
+} catch(e) { console.warn('Test swiper:', e); }
+
+// ── GSAP Hero Entrance ──
+gsap.registerPlugin(ScrollTrigger);
+
+// Set initial hidden states
+gsap.set(['#h-title','#h-widget'], { opacity: 0, y: 30 });
+
+// Staggered entrance
+gsap.timeline({ delay: 0.35 })
+  .to('#h-title',  { opacity:1, y:0, duration:0.80, ease:'power3.out' })
+  .to('#h-widget', { opacity:1, y:0, duration:0.70, ease:'power3.out' }, '-=0.45');
+
+// ── Hero bg parallax removido: imagem agora gerida pelo Swiper slider ──
+// (Ken Burns effect implementado via CSS na classe .hs-img)
+
+// ── Header scroll — mantém cor institucional, adiciona sombra discreta ──
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 55);
+}, { passive: true });
+
+// ── Mobile menu ──
+const ham = document.getElementById('ham');
+const mob = document.getElementById('mob-menu');
+const [b1,b2,b3] = ['b1','b2','b3'].map(id => document.getElementById(id));
+let open = false;
+
+ham.addEventListener('click', () => {
+  open = !open;
+  mob.classList.toggle('open', open);
+  if (open) {
+    b1.style.cssText = 'transform:translateY(6px) rotate(45deg)';
+    b2.style.opacity = '0';
+    b3.style.cssText = 'transform:translateY(-6px) rotate(-45deg);width:20px;margin-left:0';
+  } else {
+    b1.style.cssText = b2.style.cssText = b3.style.cssText = '';
+    b2.style.opacity = '1';
+  }
+});
+
+document.querySelectorAll('.mnl').forEach(l => l.addEventListener('click', () => {
+  open = false; mob.classList.remove('open');
+  b1.style.cssText = b2.style.cssText = b3.style.cssText = '';
+  b2.style.opacity = '1';
+}));
+
+// ════════════════════════════════════════════════════════
+// HERO SLIDER — Swiper com 4 slides, Ken Burns, fade crossfade,
+// barra de progresso, animação de conteúdo por slide e controles premium.
+// ════════════════════════════════════════════════════════
+(function () {
+  const AUTOPLAY_MS = 6500;
+  const dots     = document.querySelectorAll('.hs-dot');
+  const progress = document.getElementById('hs-progress');
+  const curEl    = document.getElementById('hs-cur');
+
+  const SLIDE_LABELS = ['01','02','03','04'];
+
+  // ── Funções de atualização de UI ──────────────────────
+
+  function updateDots(idx) {
+    dots.forEach((el, i) => {
+      el.classList.toggle('is-active', i === idx);
+      el.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+    });
+  }
+
+  function updateCounter(idx) {
+    if (curEl) curEl.textContent = SLIDE_LABELS[idx];
+  }
+
+  // ── Barra de progresso ────────────────────────────────
+
+  function resetProgress() {
+    if (!progress) return;
+    progress.classList.remove('running');
+    progress.style.transition = 'none';
+    progress.style.width = '0%';
+    // Força reflow para reiniciar a animação CSS
+    void progress.offsetWidth;
+    progress.classList.add('running');
+  }
+
+  // ── Inicialização do Swiper ───────────────────────────
+
+  const heroSwiper = new Swiper('#hero-swiper', {
+    loop: false,                    // sem loop para controle simples dos índices
+    speed: 1100,                    // velocidade de transição suave
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    autoplay: {
+      delay: AUTOPLAY_MS,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    navigation: {
+      prevEl: '#hs-prev',
+      nextEl: '#hs-next',
+    },
+    keyboard: { enabled: true, onlyInViewport: true },
+    a11y: false, // Gerenciamos acessibilidade manualmente
+    on: {
+      init() {
+        updateDots(0);
+        updateCounter(0);
+        resetProgress();
+      },
+      slideChange() {
+        const idx = this.activeIndex;
+        updateDots(idx);
+        updateCounter(idx);
+        resetProgress();
+      },
+      autoplayPause() {
+        if (progress) {
+          progress.style.animationPlayState = 'paused';
+          progress.style.webkitAnimationPlayState = 'paused';
+        }
+      },
+      autoplayResume() {
+        if (progress) {
+          progress.style.animationPlayState = 'running';
+          progress.style.webkitAnimationPlayState = 'running';
+        }
+      },
+    },
+  });
+
+  // ── Dots: navegação por clique ────────────────────────
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      heroSwiper.slideTo(i);
+    });
+  });
+
+  // ── Pausa no hover sobre a seção ─────────────────────
+  const heroEl = document.getElementById('hero');
+  if (heroEl) {
+    heroEl.addEventListener('mouseenter', () => heroSwiper.autoplay.pause());
+    heroEl.addEventListener('mouseleave', () => heroSwiper.autoplay.resume());
+  }
+
+}());
+
+// ── Swiper Conquistas ──
+try {
+  new Swiper('.cq-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    grabCursor: true,
+    loop: false,
+    navigation: {
+      prevEl: '#cq-prev',
+      nextEl: '#cq-next',
+    },
+    pagination: {
+      el: '#cq-dots',
+      clickable: true,
+    },
+    breakpoints: {
+      640:  { slidesPerView: 2, spaceBetween: 20 },
+      1024: { slidesPerView: 3, spaceBetween: 24 },
+    },
+  });
+} catch(e) { console.warn('Conquistas swiper:', e); }
+
+// ── Form ──
+function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('form-btn');
+  btn.textContent = 'Enviando…'; btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('form-ok').classList.remove('hidden');
+    document.getElementById('visit-form').reset();
+    btn.textContent = '✓ Enviado com sucesso!';
+  }, 1500);
+  return false;
+}
+
+// ════════════════════════════════════════════════════
+// MEGA MENU "COLÉGIOS" — hover/click + troca de preview
+// ════════════════════════════════════════════════════
+(function () {
+  const wrap    = document.getElementById('dd-colegio');
+  const trigger = document.getElementById('dd-trigger-colegio');
+  const panel   = document.getElementById('panel-colegio');
+  if (!wrap || !trigger || !panel) return;
+
+  let closeTimer;
+
+  function openDD() {
+    clearTimeout(closeTimer);
+    wrap.classList.add('is-open');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeDD(delay) {
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => {
+      wrap.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }, delay != null ? delay : 160);
+  }
+
+  // Desktop: hover sobre o wrapper inteiro (trigger + painel)
+  wrap.addEventListener('mouseenter', () => openDD());
+  wrap.addEventListener('mouseleave', () => closeDD());
+
+  // Clique no trigger (acessibilidade / tablet)
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    wrap.classList.contains('is-open') ? closeDD(0) : openDD();
+  });
+
+  // Fechar ao clicar fora
+  document.addEventListener('click', (e) => {
+    if (!wrap.contains(e.target)) closeDD(0);
+  });
+
+  // Fechar com Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && wrap.classList.contains('is-open')) {
+      closeDD(0);
+      trigger.focus();
+    }
+  });
+
+  // Focus trap: Tab/Shift+Tab dentro do painel
+  panel.addEventListener('keydown', (e) => {
+    const focusable = panel.querySelectorAll('a, button');
+    const first = focusable[0];
+    const last  = focusable[focusable.length - 1];
+    if (e.key === 'Tab') {
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); trigger.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); closeDD(0);
+      }
+    }
+  });
+
+  // ── Troca de preview ao interagir com unidade ──
+  const schools    = panel.querySelectorAll('.ddp-school[data-school]');
+  const prevImages = panel.querySelectorAll('.ddp-prev-img');
+  const prevName   = document.getElementById('prev-school-name');
+
+  function activateSchool(link) {
+    const school = link.dataset.school;
+    const name   = link.dataset.name || '';
+
+    // Atualiza classe ativa nas unidades
+    schools.forEach(s => s.classList.remove('is-active'));
+    link.classList.add('is-active');
+
+    // Troca a imagem de preview com fade cruzado
+    prevImages.forEach(img => {
+      img.classList.toggle('hidden', img.id !== 'prev-' + school);
+    });
+
+    // Atualiza o nome no rodapé do preview
+    if (prevName) prevName.textContent = name;
+  }
+
+  schools.forEach(link => {
+    // Desktop: hover activa preview
+    link.addEventListener('mouseenter', () => activateSchool(link));
+
+    // Mobile / teclado: foco activa preview
+    link.addEventListener('focus', () => activateSchool(link));
+  });
+}());
+
+// ════════════════════════════════════════════════════
+// MOBILE — Colégios accordion
+// ════════════════════════════════════════════════════
+(function () {
+  const btn  = document.getElementById('mob-colegio-btn');
+  const list = document.getElementById('mob-colegio-list');
+  if (!btn || !list) return;
+
+  btn.addEventListener('click', () => {
+    const isOpen = list.classList.contains('open');
+    list.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+}());
+
+// ════════════════════════════════════════════════════
+// MOBILE — Close accordion when menu closes
+// ════════════════════════════════════════════════════
+const _origHam = ham.onclick;
+ham.addEventListener('click', () => {
+  if (open) {
+    // Menu is about to close: reset accordion
+    const btn  = document.getElementById('mob-colegio-btn');
+    const list = document.getElementById('mob-colegio-list');
+    if (btn)  { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+    if (list) { list.classList.remove('open'); }
+  }
+});
+</script>
+</body>
+</html>

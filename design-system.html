@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="Sistema de Design — Colégio Madre Cecilia Cros" name="description"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Sistema de Design — Colégio Madre Cecilia Cros</title>
+<link href="assets/icone_3e6848525446.png" rel="shortcut icon" type="image/png"/>
+<!-- Bootstrap CSS -->
+<link href="assets/bootstrap_8d3af8bc603f.css" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link href="assets/font-awesome_b27bc9b0a771.css" rel="stylesheet"/>
+<!-- Popup -->
+<link href="assets/magnific-popup_1eab7bb0dabd.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="assets/css_c016e7a1b108.css" rel="stylesheet"/>
+<!-- Slick Slider -->
+<link href="assets/slick_ec5ae5f97a68.css" rel="stylesheet"/>
+<link href="assets/slick-theme_c8bf16f6256c.css" rel="stylesheet"/>
+<!-- Mean Menu-->
+<link href="assets/meanmenu_c0bdf9350777.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="assets/style_519c2d0d61c3.css" rel="stylesheet"/>
+<link href="assets/responsive_24760358ed40.css" rel="stylesheet"/>
+
+<style>
+  /* ── Original inline overrides (from index.html) ── */
+  .logo {
+    height: 140px;
+    padding: 22px;
+    margin: -36px 0;
+    border-radius: 0px 0px 15px 15px;
+  }
+  header .header-top { background: #170958; }
+  header .header-body .edu-navbar.boxImgCuida {
+    padding: 20px 0;
+    margin-bottom: 0;
+    background: #fff;
+    border-radius: 0px;
+    z-index: 10;
+    height: 128px;
+  }
+  nav.navbar.edu-navbar.boxMenu { background: #170958; padding: 0; min-height: 0; }
+  .boxMenu ul li a { font-size: 14px !important; padding: 8px 0 !important; margin: 0px !important; }
+  header .header-body .edu-navbar .edu-nav .nav li a { color: #56b68b; }
+  img.nazaretCuida { height: 94px; }
+  .acessoRestrito {
+    border: 1px solid #fff;
+    padding: 8px 25px;
+    border-radius: 24px;
+  }
+  .acessoRestrito:hover {
+    border: 1px solid #fff;
+    border-radius: 24px;
+    color: #170958 !important;
+    background-color: #fff;
+  }
+  .face {
+    width: 20px !important; height: 20px !important;
+    padding: 8px 14px !important; min-width: 20px !important;
+    border: 1px solid #fff; border-radius: 25px;
+  }
+  .face:hover { border: 1px solid #fff; color: #170958 !important; background-color: #fff; }
+  .insta {
+    width: 20px !important; height: 20px !important;
+    padding: 8px 12px !important; min-width: 20px !important;
+    border: 1px solid #fff; border-radius: 25px;
+  }
+  .insta:hover { border: 1px solid #fff; color: #170958 !important; background-color: #fff; }
+  header .header-body .edu-navbar .edu-nav .nav li:last-child a { padding: 23px 0; }
+
+  /* ── Carousel positioning ── */
+  .carousel { position: relative; margin-top: 128px; }
+  .carousel-control.left, .carousel-control.right { background-image: none; }
+  .carousel-control span.fas.fa-chevron-right,
+  .carousel-control span.fas.fa-chevron-left {
+    top: 50%; position: absolute; font-size: 30px;
+  }
+
+  /* ── Float Button ── */
+  .float-button {
+    text-decoration: none;
+    position: fixed;
+    padding: 22px;
+    padding-right: 15px;
+    bottom: 30px;
+    right: 0;
+    background-color: #dcc608;
+    color: #FFF;
+    border-radius: 10px 0 0 10px;
+    text-align: center;
+    font-size: 18px;
+    box-shadow: 1px 4px 6px 0px rgb(173 173 173);
+    z-index: 100;
+    font-family: arial;
+    animation: whatsapp-animation 0.5s ease-in-out;
+    transition: background-color 0.3s ease;
+  }
+  .float-button:hover { color: #dcc608; background-color: #170958; }
+  .float-button.segundo { bottom: 113px !important; background-color: #fe8717; }
+  .float-button.segundo:hover { color: #fe8717; background-color: #170958; }
+  .fa-whatsapp { font-size: 20px !important; padding-right: 5px; padding-left: 5px; }
+
+  @keyframes whatsapp-animation {
+    from { opacity: 0%; }
+    to   { opacity: 100%; }
+  }
+
+  /* ════════════════════════════════════════════
+     DESIGN SYSTEM NAV
+  ════════════════════════════════════════════ */
+  #ds-nav {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: #170958;
+    border-bottom: 3px solid #fec722;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  #ds-nav::-webkit-scrollbar { display: none; }
+  #ds-nav .ds-brand {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #fff;
+    white-space: nowrap;
+    padding: 12px 20px 12px 0;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    margin-right: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  #ds-nav a {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    padding: 14px 14px;
+    white-space: nowrap;
+    transition: color 0.2s, border-bottom 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  #ds-nav a:hover, #ds-nav a.active {
+    color: #fec722;
+    border-bottom: 3px solid #fec722;
+  }
+
+  /* ════════════════════════════════════════════
+     DS SECTIONS SHARED
+  ════════════════════════════════════════════ */
+  .ds-section {
+    padding: 72px 0 80px;
+    scroll-margin-top: 48px;
+  }
+  .ds-section:nth-child(even) { background: #f9f9f9; }
+  .ds-section:nth-child(odd)  { background: #ffffff; }
+  .ds-section-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #56b68b;
+    margin: 0 0 6px;
+  }
+  .ds-section-heading {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    color: #333333;
+    margin: 0 0 12px;
+  }
+  .ds-section-desc {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #727272;
+    line-height: 24px;
+    margin: 0 0 48px;
+  }
+  .ds-label {
+    font-family: "Open Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #727272;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .ds-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .ds-card.dark { background: #170958; border-color: #170958; }
+  .ds-divider {
+    border: none;
+    border-top: 1px solid #ebebeb;
+    margin: 40px 0;
+  }
+
+  /* ════════════════════════════════════════════
+     SEC 1 — TYPOGRAPHY
+  ════════════════════════════════════════════ */
+  .typo-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+  }
+  .typo-table th {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 2px solid #ebebeb;
+    font-weight: 700;
+    color: #333;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .typo-table td {
+    padding: 18px 14px;
+    border-bottom: 1px solid #ebebeb;
+    vertical-align: middle;
+    color: #727272;
+  }
+  .typo-table tr:last-child td { border-bottom: none; }
+  .typo-preview { color: #333333; }
+
+  /* ════════════════════════════════════════════
+     SEC 2 — COLORS
+  ════════════════════════════════════════════ */
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 24px;
+  }
+  .color-swatch .swatch-block { height: 100px; }
+  .color-swatch .swatch-info {
+    padding: 14px 16px;
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .swatch-info .swatch-name {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #333;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .swatch-info .swatch-hex {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    color: #727272;
+  }
+
+  /* ════════════════════════════════════════════
+     SEC 3 — COMPONENTS
+  ════════════════════════════════════════════ */
+  .ds-component-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  .ds-component-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .ds-component-label {
+    font-family: "Open Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #727272;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ════════════════════════════════════════════
+     SEC 4 — LAYOUT
+  ════════════════════════════════════════════ */
+  .ds-grid-demo .col-demo {
+    background: rgba(23, 9, 88, 0.08);
+    border: 1px solid rgba(23, 9, 88, 0.2);
+    border-radius: 2px;
+    padding: 16px 8px;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    color: #170958;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .ds-spacing-scale {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-end;
+  }
+  .ds-spacing-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .ds-spacing-block {
+    background: #170958;
+    opacity: 0.18;
+    width: 100%;
+    min-width: 40px;
+  }
+
+  /* ════════════════════════════════════════════
+     SEC 5 — MOTION
+  ════════════════════════════════════════════ */
+  .motion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .motion-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .motion-card .motion-name {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #170958;
+  }
+  .motion-card .motion-css {
+    font-family: monospace;
+    font-size: 11px;
+    color: #727272;
+    background: #f5f5f5;
+    padding: 8px 12px;
+    border-radius: 3px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  /* Demo triggers */
+  .demo-float-btn {
+    display: inline-block;
+    padding: 14px 20px;
+    background: #dcc608;
+    color: #fff;
+    border-radius: 10px 0 0 10px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    animation: whatsapp-animation 0.5s ease-in-out;
+    border: none;
+  }
+  .demo-float-btn:hover { background: #170958; }
+
+  .demo-news-card {
+    display: inline-block;
+  }
+  .demo-news-card .news-single-box {
+    display: block;
+    width: 220px;
+  }
+  .demo-read-more {
+    display: inline-block;
+    color: #666;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    position: relative;
+    padding-right: 30px;
+    transition: all 0.3s ease-in-out;
+  }
+  .demo-read-more::before {
+    font-family: FontAwesome;
+    content: "\f178";
+    position: absolute;
+    top: 1px;
+    right: 0;
+  }
+  .demo-read-more:hover { color: #170958; }
+
+  .demo-header-sticky {
+    background: #fff;
+    box-shadow: 0 0 50px 0 rgba(0,0,0,0.15);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border-radius: 4px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #333;
+  }
+  .demo-header-sticky span { color: #fec722; border-bottom: 2px solid #fec722; padding-bottom: 2px; }
+
+  /* ════════════════════════════════════════════
+     SEC 6 — ICONS
+  ════════════════════════════════════════════ */
+  .icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 80px;
+    text-align: center;
+  }
+  .icon-item i { font-size: 22px; color: #170958; }
+  .icon-item .icon-name {
+    font-family: "Open Sans", sans-serif;
+    font-size: 10px;
+    color: #727272;
+    word-break: break-word;
+    line-height: 1.3;
+  }
+  .icon-color-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .icon-color-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 11px;
+    color: #727272;
+  }
+
+  /* news card override for ds preview */
+  .news-single-box { cursor: default; }
+</style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════
+     ORIGINAL HEADER (adapted for Design System)
+══════════════════════════════════════════════ -->
+<header id="header">
+  <div class="header-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5 col-xs-12 header-top-left">
+          <ul class="list-unstyled">
+            <li><i aria-hidden="true" class="fa fa-phone top-icon"></i> (41) 3354-5464</li>
+            <li><i aria-hidden="true" class="fa fa-envelope top-icon"></i> contato@colegiomadrececiliacros.com.br</li>
+          </ul>
+        </div>
+        <div class="col-sm-7 col-xs-12 header-top-right">
+          <ul class="list-unstyled">
+            <li><a class="face" href="#"><i aria-hidden="true" class="fa fa-facebook facebook"></i></a></li>
+            <li><a class="insta" href="#"><i aria-hidden="true" class="fa fa-instagram instagram"></i></a></li>
+            <li><a class="acessoRestrito" href="#"><i aria-hidden="true" class="fa fa-lock top-icon"></i> Acesso Restrito</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-body">
+    <nav class="navbar edu-navbar boxImgCuida" style="">
+      <div class="container">
+        <div class="navbar-header">
+          <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#ds-navbar-collapse" data-toggle="collapse" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">
+            <img alt="Colégio Madre Cecilia Cros" class="logo" src="assets/logo_c0e703bafd98.png"/>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse edu-nav main-menu" id="ds-navbar-collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li><a href="#ds-typography">Tipografia</a></li>
+            <li><a href="#ds-colors">Cores</a></li>
+            <li><a href="#ds-components">Componentes</a></li>
+            <li><a href="#ds-layout">Layout</a></li>
+            <li><a href="#ds-motion">Movimento</a></li>
+            <li><a href="#ds-icons">Ícones</a></li>
+            <li><a href="index.html">← Voltar ao Site</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<!--  End header section -->
+
+<!-- ══════════════════════════════════════════════
+     SECTION 0 — HERO (exact carousel clone)
+══════════════════════════════════════════════ -->
+<section id="ds-hero">
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+
+      <div class="item active">
+        <img src="assets/banner150anos_ba4a5589d56b.jpg" alt="Sistema de Design — Banner 1" style="width:100%"/>
+        <div class="carousel-caption" style="background:rgba(23,9,88,0.72); border-radius:8px; padding:24px 32px; bottom:60px;">
+          <h2 style="font-family:'Montserrat',sans-serif;font-size:clamp(22px,3vw,40px);font-weight:700;color:#fff;margin:0 0 8px;text-align:left;">Sistema de Design</h2>
+          <p style="font-family:'Open Sans',sans-serif;font-size:16px;color:rgba(255,255,255,0.85);margin:0;text-align:left;">Colégio Madre Cecilia Cros — Guia de Referência Visual</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="assets/bannerhorario_6ecab266b2d8.jpg" alt="Sistema de Design — Banner 2" style="width:100%"/>
+        <div class="carousel-caption" style="background:rgba(23,9,88,0.72); border-radius:8px; padding:24px 32px; bottom:60px;">
+          <h2 style="font-family:'Montserrat',sans-serif;font-size:clamp(22px,3vw,40px);font-weight:700;color:#fff;margin:0 0 8px;text-align:left;">Padrões &amp; Componentes</h2>
+          <p style="font-family:'Open Sans',sans-serif;font-size:16px;color:rgba(255,255,255,0.85);margin:0;text-align:left;">Tipografia · Cores · Layout · Movimento · Ícones</p>
+        </div>
+      </div>
+
+    </div>
+    <!-- Controls -->
+    <a class="left carousel-control" data-slide="prev" href="#carousel-example-generic" role="button">
+      <span aria-hidden="true" class="fas fa-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" data-slide="next" href="#carousel-example-generic" role="button">
+      <span aria-hidden="true" class="fas fa-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     DESIGN SYSTEM STICKY NAV
+══════════════════════════════════════════════ -->
+<nav id="ds-nav">
+  <div class="ds-brand">Design System MCC</div>
+  <a href="#ds-typography">0 · Tipografia</a>
+  <a href="#ds-colors">1 · Cores</a>
+  <a href="#ds-components">2 · Componentes</a>
+  <a href="#ds-layout">3 · Layout</a>
+  <a href="#ds-motion">4 · Movimento</a>
+  <a href="#ds-icons">5 · Ícones</a>
+</nav>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1 — TYPOGRAPHY
+══════════════════════════════════════════════ -->
+<section id="ds-typography" class="ds-section">
+  <div class="container">
+    <p class="ds-section-title">Seção 01</p>
+    <h2 class="ds-section-heading">Tipografia</h2>
+    <p class="ds-section-desc">O sistema usa duas famílias: <strong>Montserrat</strong> (700) para títulos e <strong>Open Sans</strong> para corpo de texto e UI. Todos os cabeçalhos herdam <code>color: #333333</code>; parágrafos usam <code>#727272</code>.</p>
+
+    <table class="typo-table">
+      <thead>
+        <tr>
+          <th style="width:40%">Preview</th>
+          <th>Elemento / Classe</th>
+          <th>Família</th>
+          <th>Tamanho</th>
+          <th>Peso</th>
+          <th>Cor</th>
+          <th>Line-height</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- H1 -->
+        <tr>
+          <td><h1 class="typo-preview" style="font-size:36px;margin:0">Colégio Madre</h1></td>
+          <td><code>h1</code></td>
+          <td>Montserrat</td>
+          <td>36px (Bootstrap default)</td>
+          <td>700</td>
+          <td>#333333</td>
+          <td>1.1</td>
+        </tr>
+        <!-- H2 -->
+        <tr>
+          <td><h2 class="typo-preview" style="font-size:48px;margin:0;text-align:left">Nossa Metodologia</h2></td>
+          <td><code>h2</code></td>
+          <td>Montserrat</td>
+          <td>48px</td>
+          <td>700</td>
+          <td>#333333</td>
+          <td>—</td>
+        </tr>
+        <!-- H2 section-header -->
+        <tr>
+          <td>
+            <div class="section-header-box" style="margin-bottom:0">
+              <div class="section-header" style="padding-bottom:25px">
+                <h2>Notícias</h2>
+              </div>
+            </div>
+          </td>
+          <td><code>h2</code> dentro de <code>.section-header</code></td>
+          <td>Montserrat</td>
+          <td>48px</td>
+          <td>700</td>
+          <td>#333333</td>
+          <td>—</td>
+        </tr>
+        <!-- H3 -->
+        <tr>
+          <td><h3 class="typo-preview" style="margin:0">DATA PARA O ENEM 2025</h3></td>
+          <td><code>h3</code></td>
+          <td>Montserrat</td>
+          <td>18px</td>
+          <td>700</td>
+          <td>#333333</td>
+          <td>26px</td>
+        </tr>
+        <!-- H3 slider-btm-box -->
+        <tr>
+          <td>
+            <div style="background:#170958;display:inline-block;padding:12px 20px;border-radius:4px;">
+              <h3 style="color:#fff;font-size:20px;margin:0;padding:0;font-family:'Montserrat',sans-serif;font-weight:700;">Inteligências Múltiplas</h3>
+            </div>
+          </td>
+          <td><code>h3</code> em <code>.slider-btm-box</code></td>
+          <td>Montserrat</td>
+          <td>20px</td>
+          <td>700</td>
+          <td>#ffffff</td>
+          <td>—</td>
+        </tr>
+        <!-- H4 -->
+        <tr>
+          <td><h4 class="typo-preview" style="margin:0">Ensino Médio</h4></td>
+          <td><code>h4</code></td>
+          <td>Montserrat</td>
+          <td>18px (Bootstrap)</td>
+          <td>700</td>
+          <td>#333333</td>
+          <td>—</td>
+        </tr>
+        <!-- H5 modal title -->
+        <tr>
+          <td><h5 class="typo-preview" style="margin:0">Rematrícula On-line</h5></td>
+          <td><code>h5.modal-title</code></td>
+          <td>Montserrat</td>
+          <td>14px (Bootstrap)</td>
+          <td>700</td>
+          <td>#333333</td>
+          <td>—</td>
+        </tr>
+        <!-- Paragraph body -->
+        <tr>
+          <td><p style="margin:0">O Colégio orienta seu trabalho pedagógico com os princípios e ensinamentos do Evangelho.</p></td>
+          <td><code>p</code></td>
+          <td>Open Sans</td>
+          <td>14px</td>
+          <td>400</td>
+          <td>#727272</td>
+          <td>24px</td>
+        </tr>
+        <!-- Welcome area paragraph -->
+        <tr>
+          <td><p style="margin:0;font-size:15px;color:#666;font-family:'Open Sans',sans-serif;">O Colégio Madre Cecilia Cros pertence à Congregação Missionárias Filhas da Sagrada Família.</p></td>
+          <td><code>p</code> em <code>.Welcome-area-text</code></td>
+          <td>Open Sans</td>
+          <td>15px</td>
+          <td>400</td>
+          <td>#666666</td>
+          <td>24px</td>
+        </tr>
+        <!-- Nav link -->
+        <tr>
+          <td><span style="font-family:'Open Sans',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;color:#56b68b">Institucional</span></td>
+          <td><code>.edu-nav .nav li a</code></td>
+          <td>Open Sans</td>
+          <td>14px</td>
+          <td>700</td>
+          <td>#56b68b</td>
+          <td>—</td>
+        </tr>
+        <!-- Header top text -->
+        <tr>
+          <td><span style="font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;color:#fff;background:#170958;padding:4px 8px;border-radius:2px;">(41) 3354-5464</span></td>
+          <td><code>.header-top-left ul li</code></td>
+          <td>Open Sans</td>
+          <td>13px</td>
+          <td>600</td>
+          <td>#ffffff</td>
+          <td>—</td>
+        </tr>
+        <!-- view-more-item -->
+        <tr>
+          <td><a class="view-more-item" href="#" style="display:inline-block;background:#fec722;color:#333333;font-size:15px;font-family:'Open Sans',sans-serif;font-weight:600;padding:12px 30px;text-decoration:none;text-transform:uppercase;">Ver Mais</a></td>
+          <td><code>.view-more-item</code></td>
+          <td>Open Sans</td>
+          <td>15px</td>
+          <td>600</td>
+          <td>#333333</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2 — COLORS & SURFACES
+══════════════════════════════════════════════ -->
+<section id="ds-colors" class="ds-section">
+  <div class="container">
+    <p class="ds-section-title">Seção 02</p>
+    <h2 class="ds-section-heading">Cores &amp; Superfícies</h2>
+    <p class="ds-section-desc">Paleta extraída das variáveis inline, CSS custom e seletores do <code>style_519c2d0d61c3.css</code> e dos estilos <code>&lt;style&gt;</code> da página.</p>
+
+    <!-- Primary palette -->
+    <div class="ds-label">Paleta Principal</div>
+    <div class="row">
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#170958;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Purple — Brand</span>
+            <span class="swatch-hex">#170958</span>
+            <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#aaa;margin-top:4px;">Header top, boxMenu, float-button hover</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#56b68b;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Teal — Links</span>
+            <span class="swatch-hex">#56b68b</span>
+            <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#aaa;margin-top:4px;">Nav links (sticky mode)</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#fec722;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Yellow — Accent</span>
+            <span class="swatch-hex">#fec722</span>
+            <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#aaa;margin-top:4px;">Hover underline, buttons, icons hover</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#dcc608;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Gold — Float</span>
+            <span class="swatch-hex">#dcc608</span>
+            <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#aaa;margin-top:4px;">Float button background</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#fe8717;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Orange — Float 2</span>
+            <span class="swatch-hex">#fe8717</span>
+            <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#aaa;margin-top:4px;">Segundo float button</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1cb721;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Green — Action</span>
+            <span class="swatch-hex">#1cb721</span>
+            <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#aaa;margin-top:4px;">Rematrícula btn override</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Slider-btm-box accent colors -->
+    <div class="ds-label">Cores dos Itens de Destaque (.slider-btm-box)</div>
+    <div class="row">
+      <div class="col-sm-3 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:rgba(72,134,255,1);"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Blue — btm-item_01</span>
+            <span class="swatch-hex">#4886ff</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:rgba(181,213,106,1);"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Green — btm-item_02</span>
+            <span class="swatch-hex">#b5d56a</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:rgba(255,111,111,1);"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Red — btm-item_03 (default)</span>
+            <span class="swatch-hex">#ff6f6f</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#170958;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Purple — btm-item_03 (override)</span>
+            <span class="swatch-hex">#170958</span>
+            <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#aaa;margin-top:4px;">Applied via inline style on index.html</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Neutrals & Surfaces -->
+    <div class="ds-label">Neutros &amp; Superfícies</div>
+    <div class="row">
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#333333;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Dark — Headings</span>
+            <span class="swatch-hex">#333333</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#727272;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Gray — Body Text</span>
+            <span class="swatch-hex">#727272</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#666666;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Gray Mid — Links</span>
+            <span class="swatch-hex">#666666</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#b2b2b2;border:1px solid #eee;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Gray Light — Dividers</span>
+            <span class="swatch-hex">#b2b2b2</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#f9f9f9;border:1px solid #eee;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Off-White — Surfaces</span>
+            <span class="swatch-hex">#f9f9f9</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#ffffff;border:1px solid #eee;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">White — BG</span>
+            <span class="swatch-hex">#ffffff</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Shadows & Overlays -->
+    <div class="ds-label">Sombras &amp; Overlays</div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div style="background:#fff;box-shadow:0 0 10px rgba(0,0,0,0.13);padding:24px;border-radius:4px;margin-bottom:16px;">
+          <span class="ds-label" style="margin:0">Sombra padrão</span>
+          <code style="display:block;font-size:11px;color:#727272;margin-top:6px;">box-shadow: 0 0 10px rgba(0,0,0,0.13)</code>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div style="background:#fff;box-shadow:0 1px 30px rgba(0,0,0,0.25);padding:24px;border-radius:4px;margin-bottom:16px;">
+          <span class="ds-label" style="margin:0">Sombra hover</span>
+          <code style="display:block;font-size:11px;color:#727272;margin-top:6px;">box-shadow: 0 1px 30px rgba(0,0,0,0.25)</code>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div style="background:#fff;box-shadow:0 0 50px 0 rgba(0,0,0,0.15);padding:24px;border-radius:4px;margin-bottom:16px;">
+          <span class="ds-label" style="margin:0">Sombra sticky navbar</span>
+          <code style="display:block;font-size:11px;color:#727272;margin-top:6px;">box-shadow: 0 0 50px 0 rgba(0,0,0,0.15)</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 — UI COMPONENTS
+══════════════════════════════════════════════ -->
+<section id="ds-components" class="ds-section">
+  <div class="container">
+    <p class="ds-section-title">Seção 03</p>
+    <h2 class="ds-section-heading">Componentes de UI</h2>
+    <p class="ds-section-desc">Todos os componentes renderizados usando as classes e estilos originais do site — sem redesign.</p>
+
+    <!-- Buttons -->
+    <div class="ds-label">Botões</div>
+    <div class="ds-component-row">
+      <div class="ds-component-item">
+        <span class="ds-component-label">btn-primary (padrão)</span>
+        <a class="btn btn-primary" href="#" type="button">Maternal</a>
+      </div>
+      <div class="ds-component-item">
+        <span class="ds-component-label">btn-primary (instrução)</span>
+        <a class="btn btn-primary" href="#" style="background-color:#f59f03;" type="button">Abrir Instruções</a>
+      </div>
+      <div class="ds-component-item">
+        <span class="ds-component-label">btn-primary (rematrícula)</span>
+        <a class="btn btn-primary" href="#" style="background-color:#1cb721;" type="button">Acessar Área</a>
+      </div>
+      <div class="ds-component-item">
+        <span class="ds-component-label">view-more-item</span>
+        <a class="view-more-item" href="#" style="display:inline-block;background:#fec722;color:#333333;font-size:15px;font-family:'Open Sans',sans-serif;font-weight:600;padding:18px 50px;text-decoration:none;text-transform:uppercase;">Ver Todos</a>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Acesso Restrito buttons -->
+    <div class="ds-label">Links de Acesso (.acessoRestrito)</div>
+    <div style="background:#170958;padding:24px;border-radius:4px;display:inline-flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;">
+      <a class="acessoRestrito" href="#" style="color:#fff;text-decoration:none;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;">Professores</a>
+      <a class="acessoRestrito" href="#" style="color:#fff;text-decoration:none;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;">Atividades</a>
+      <a class="acessoRestrito" href="#" style="color:#fff;text-decoration:none;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;"><i aria-hidden="true" class="fa fa-lock top-icon"></i> Acesso Restrito</a>
+    </div>
+    <div style="background:#170958;padding:24px;border-radius:4px;display:inline-flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;margin-left:12px;">
+      <a class="face" href="#" style="color:#fff;text-decoration:none;"><i class="fa fa-facebook"></i></a>
+      <a class="insta" href="#" style="color:#fff;text-decoration:none;"><i class="fa fa-instagram"></i></a>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Float Button -->
+    <div class="ds-label">Botão Flutuante (.float-button) — versões</div>
+    <div class="ds-component-row" style="align-items:center;">
+      <div class="ds-component-item">
+        <span class="ds-component-label">Rematrícula (gold)</span>
+        <button class="demo-float-btn" type="button">
+          <i aria-hidden="true" class="fa fa-wpforms"></i> Quero fazer rematrícula
+        </button>
+      </div>
+      <div class="ds-component-item">
+        <span class="ds-component-label">Matrícula (orange)</span>
+        <button class="demo-float-btn" type="button" style="background:#fe8717;">
+          <i aria-hidden="true" class="fa fa-wpforms"></i> Quero fazer matrícula
+        </button>
+      </div>
+      <div class="ds-component-item">
+        <span class="ds-component-label">WhatsApp (SVG)</span>
+        <div style="background:#4CAF50;border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;">
+          <svg enable-background="new 0 0 512 512" height="30" viewBox="0 0 512 512" width="30" xmlns="http://www.w3.org/2000/svg"><path d="M256.064,0h-0.128C114.784,0,0,114.816,0,256c0,56,18.048,107.904,48.736,150.048l-31.904,95.104l98.4-31.456C155.712,496.512,204,512,256.064,512C397.216,512,512,397.152,512,256S397.216,0,256.064,0z" fill="#4CAF50"/><path d="M405.02,361.5c-6.176,17.44-30.688,31.904-50.24,36.128c-13.376,2.848-30.848,5.12-89.664-19.264c-75.232-31.168-123.68-107.616-127.456-112.576c-3.616-4.96-30.4-40.48-30.4-77.216s18.656-54.624,26.176-62.304c6.176-6.304,16.384-9.184,26.176-9.184c3.168,0,6.016,0.16,8.576,0.288c7.52,0.32,11.296,0.768,16.256,12.64c6.176,14.88,21.216,51.616,23.008,55.392c1.824,3.776,3.648,8.896,1.088,13.856c-2.4,5.12-4.512,7.392-8.288,11.744s-7.36,7.68-11.136,12.352c-3.456,4.064-7.36,8.416-3.008,15.936c4.352,7.36,19.392,31.904,41.536,51.616c28.576,25.44,51.744,33.568,60.032,37.024c6.176,2.56,13.536,1.952,18.048-2.848c5.728-6.176,12.8-16.416,20-26.496c5.12-7.232,11.584-8.128,18.368-5.568c6.912,2.4,43.488,20.48,51.008,24.224c7.52,3.776,12.48,5.568,14.304,8.736C410.496,343.616,411.2,344.064,405.02,361.5z" fill="#FAFAFA"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Read More Link -->
+    <div class="ds-label">Link "Ver Mais" (.read_more-btn)</div>
+    <div style="margin-bottom:24px;">
+      <a class="demo-read-more" href="#">Ver mais</a>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Slider Bottom Box -->
+    <div class="ds-label">Destaque Inferior (.slider-btm-box)</div>
+    <section class="slider-content-bottom" style="margin-top:0;padding:24px 0;">
+      <div class="container">
+        <div class="row sider-btm-row-inner">
+          <div class="col-sm-12 content_body slide_cont_box_03">
+            <div class="slider-btm-box btm-item_03" style="background:#170958;">
+              <h3>Inteligências Múltiplas</h3>
+              <ul class="inteligencias" style="list-style:none;padding:0;margin:16px 0 0;display:flex;flex-wrap:wrap;gap:12px;">
+                <li title="INTELIGÊNCIA LÓGICO-MATEMÁTICA"><span aria-hidden="true" class="fa fa-calculator" style="font-size:24px;color:#fff;"></span></li>
+                <li title="INTELIGÊNCIA LINGUÍSTICO-VERBAL"><span aria-hidden="true" class="fa fa-comment" style="font-size:24px;color:#fff;"></span></li>
+                <li title="INTELIGÊNCIA CORPORAL-CINESTÉSICA"><span aria-hidden="true" class="fa fa-running" style="font-size:24px;color:#fff;"></span></li>
+                <li title="INTELIGÊNCIA VISUAL ESPACIAL"><span aria-hidden="true" class="fa fa-cube" style="font-size:24px;color:#fff;"></span></li>
+                <li title="INTELIGÊNCIA MUSICAL"><span aria-hidden="true" class="fa fa-music" style="font-size:24px;color:#fff;"></span></li>
+                <li title="INTELIGÊNCIA INTERPESSOAL"><span aria-hidden="true" class="fa fa-users" style="font-size:24px;color:#fff;"></span></li>
+                <li title="INTELIGÊNCIA INTRAPESSOAL e ESPIRITUAL"><span aria-hidden="true" class="fa fa-praying-hands" style="font-size:24px;color:#fff;"></span></li>
+                <li title="INTELIGÊNCIA NATURALISTA"><span aria-hidden="true" class="fa fa-leaf" style="font-size:24px;color:#fff;"></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="ds-divider"/>
+
+    <!-- News Cards -->
+    <div class="ds-label">Cards de Notícia (.news-single-box)</div>
+    <div class="row">
+      <div class="col-sm-4 news-single">
+        <div class="news-single-box">
+          <div class="news-img-box">
+            <img alt="" class="img-responsive" src="assets/enem-2025_b8ffc7718cc1.png"/>
+          </div>
+          <div class="news-content">
+            <h3><a href="#" style="color:#333;">DATA PARA O ENEM 2025</a></h3>
+            <p class="news-time">
+              <span><i aria-hidden="true" class="fa fa-calendar event-icon"></i> 21 de Oct, 2025</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 news-single">
+        <div class="news-single-box">
+          <div class="news-img-box">
+            <img alt="" class="img-responsive" src="assets/pais_4241b495e2cf.png"/>
+          </div>
+          <div class="news-content">
+            <h3><a href="#" style="color:#333;">Homenagem dia dos Pais</a></h3>
+            <p class="news-time">
+              <span><i aria-hidden="true" class="fa fa-calendar event-icon"></i> 09 de Aug, 2020</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 news-single">
+        <div class="news-single-box">
+          <div class="news-img-box">
+            <img alt="" class="img-responsive" src="assets/homenagemmaes_46e03e463b37.png"/>
+          </div>
+          <div class="news-content">
+            <h3><a href="#" style="color:#333;">Homenagem dia das Mães</a></h3>
+            <p class="news-time">
+              <span><i aria-hidden="true" class="fa fa-calendar event-icon"></i> 10 de May, 2020</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Section Header pattern -->
+    <div class="ds-label">Cabeçalho de Seção (.section-header / .section-header-l)</div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div style="background:#fff;border:1px solid #ebebeb;padding:24px;border-radius:4px;margin-bottom:16px;">
+          <p class="ds-component-label" style="margin-bottom:12px;">Centered (.section-header)</p>
+          <div class="section-header-box">
+            <div class="section-header">
+              <h2>Notícias</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div style="background:#fff;border:1px solid #ebebeb;padding:24px;border-radius:4px;margin-bottom:16px;">
+          <p class="ds-component-label" style="margin-bottom:12px;">Left-aligned (.section-header-l)</p>
+          <div class="section-header-box">
+            <div class="section-header section-header-l">
+              <h2>Nossa Metodologia</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Bootstrap Modal -->
+    <div class="ds-label">Modal Bootstrap (.modal)</div>
+    <div style="background:#fff;border:1px solid #ebebeb;border-radius:4px;padding:0;overflow:hidden;max-width:540px;">
+      <div class="modal-header" style="border-bottom:1px solid #ebebeb;">
+        <h5 class="modal-title" style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:16px;color:#333;margin:0;">Rematrícula On-line</h5>
+        <button class="close" type="button" style="float:right;font-size:21px;line-height:1;background:none;border:none;cursor:pointer;">×</button>
+      </div>
+      <div class="modal-body" style="padding:24px;">
+        <div class="row text-center">
+          <div class="col-sm-6" style="margin-bottom:12px;">
+            <p class="tituloModal" style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#333;margin-bottom:12px;">Instruções para primeiro acesso</p>
+            <a class="btn btn-primary" href="#" style="background-color:#f59f03;">Abrir instruções</a>
+          </div>
+          <div class="col-sm-6">
+            <p class="tituloModal" style="font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#333;margin-bottom:12px;">Acessar painel de rematrícula</p>
+            <a class="btn btn-primary" href="#" style="background-color:#1cb721;">Acessar área</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Social bar -->
+    <div class="ds-label">Barra de Redes Sociais (.instraction-area)</div>
+    <section class="instraction-area" style="margin:0;">
+      <div class="container">
+        <div class="row inspiration-full-box">
+          <div class="hidden-xs col-md-3 section-header-l" style="padding-bottom:0;">
+            <span class="redes" style="font-family:'Open Sans',sans-serif;font-size:14px;font-weight:600;color:#fff;">Nossas redes:</span>
+          </div>
+          <div class="col-xs-12 col-md-9 text-left">
+            <a class="redesBarraFb" href="#" style="color:#fff;font-size:24px;margin-right:16px;text-decoration:none;"><i aria-hidden="true" class="fa fa-facebook facebook"></i></a>
+            <a class="redesBarraInsta" href="#" style="color:#fff;font-size:24px;text-decoration:none;"><i aria-hidden="true" class="fa fa-instagram instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4 — LAYOUT & SPACING
+══════════════════════════════════════════════ -->
+<section id="ds-layout" class="ds-section">
+  <div class="container">
+    <p class="ds-section-title">Seção 04</p>
+    <h2 class="ds-section-heading">Layout &amp; Espaçamento</h2>
+    <p class="ds-section-desc">Baseado em Bootstrap 3. Container de 1170px, gutter de 30px. Todas as páginas usam o padrão <code>.container &gt; .row &gt; .col-sm-*</code>.</p>
+
+    <!-- Container / Row / Col -->
+    <div class="ds-label">Grade Bootstrap — .col-sm-*</div>
+    <div class="ds-grid-demo" style="margin-bottom:32px;">
+      <div class="row">
+        <div class="col-sm-12"><div class="col-demo">col-sm-12 (100%)</div></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6"><div class="col-demo">col-sm-6</div></div>
+        <div class="col-sm-6"><div class="col-demo">col-sm-6</div></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"><div class="col-demo">col-sm-4</div></div>
+        <div class="col-sm-4"><div class="col-demo">col-sm-4</div></div>
+        <div class="col-sm-4"><div class="col-demo">col-sm-4</div></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3"><div class="col-demo">col-sm-3</div></div>
+        <div class="col-sm-3"><div class="col-demo">col-sm-3</div></div>
+        <div class="col-sm-3"><div class="col-demo">col-sm-3</div></div>
+        <div class="col-sm-3"><div class="col-demo">col-sm-3</div></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2"><div class="col-demo">col-sm-2</div></div>
+        <div class="col-sm-2"><div class="col-demo">col-sm-2</div></div>
+        <div class="col-sm-2"><div class="col-demo">col-sm-2</div></div>
+        <div class="col-sm-2"><div class="col-demo">col-sm-2</div></div>
+        <div class="col-sm-2"><div class="col-demo">col-sm-2</div></div>
+        <div class="col-sm-2"><div class="col-demo">col-sm-2</div></div>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Section padding patterns -->
+    <div class="ds-label">Padrões de Padding por Seção</div>
+    <table class="typo-table" style="margin-bottom:32px;">
+      <thead>
+        <tr>
+          <th>Seção</th>
+          <th>Classe CSS</th>
+          <th>Padding Top</th>
+          <th>Padding Bottom</th>
+          <th>Background</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Slider Bottom</td>
+          <td><code>.slider-content-bottom</code></td>
+          <td>—</td>
+          <td>—</td>
+          <td>#ffffff</td>
+        </tr>
+        <tr>
+          <td>Nossa Metodologia</td>
+          <td><code>.Welcome-area</code></td>
+          <td>100px</td>
+          <td>—</td>
+          <td>#ffffff</td>
+        </tr>
+        <tr>
+          <td>Notícias</td>
+          <td><code>.news-area</code></td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Redes Sociais</td>
+          <td><code>.instraction-area</code></td>
+          <td>—</td>
+          <td>—</td>
+          <td>Overlay escuro</td>
+        </tr>
+        <tr>
+          <td>Cursos</td>
+          <td><code>.Courses-area</code></td>
+          <td>100px</td>
+          <td>100px</td>
+          <td>#f9f9f9</td>
+        </tr>
+        <tr>
+          <td>Eventos</td>
+          <td><code>.events-area</code></td>
+          <td>100px</td>
+          <td>100px</td>
+          <td>#ffffff</td>
+        </tr>
+        <tr>
+          <td>Publicações</td>
+          <td><code>.publication-area</code></td>
+          <td>100px</td>
+          <td>100px</td>
+          <td>#ffffff</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="ds-divider"/>
+
+    <!-- Spacing scale -->
+    <div class="ds-label">Escala de Espaçamento</div>
+    <div class="ds-spacing-scale">
+      <div class="ds-spacing-item">
+        <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#727272;text-align:center;">4px</div>
+        <div class="ds-spacing-block" style="height:4px;"></div>
+        <div style="font-family:monospace;font-size:10px;color:#aaa;">Gutter ½</div>
+      </div>
+      <div class="ds-spacing-item">
+        <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#727272;">8px</div>
+        <div class="ds-spacing-block" style="height:8px;"></div>
+        <div style="font-family:monospace;font-size:10px;color:#aaa;">nav padding</div>
+      </div>
+      <div class="ds-spacing-item">
+        <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#727272;">15px</div>
+        <div class="ds-spacing-block" style="height:15px;"></div>
+        <div style="font-family:monospace;font-size:10px;color:#aaa;">col gutter</div>
+      </div>
+      <div class="ds-spacing-item">
+        <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#727272;">20px</div>
+        <div class="ds-spacing-block" style="height:20px;"></div>
+        <div style="font-family:monospace;font-size:10px;color:#aaa;">navbar pad</div>
+      </div>
+      <div class="ds-spacing-item">
+        <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#727272;">25px</div>
+        <div class="ds-spacing-block" style="height:25px;"></div>
+        <div style="font-family:monospace;font-size:10px;color:#aaa;">card pad</div>
+      </div>
+      <div class="ds-spacing-item">
+        <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#727272;">30px</div>
+        <div class="ds-spacing-block" style="height:30px;"></div>
+        <div style="font-family:monospace;font-size:10px;color:#aaa;">btm-item pad</div>
+      </div>
+      <div class="ds-spacing-item">
+        <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#727272;">50px</div>
+        <div class="ds-spacing-block" style="height:50px;"></div>
+        <div style="font-family:monospace;font-size:10px;color:#aaa;">section gap</div>
+      </div>
+      <div class="ds-spacing-item">
+        <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#727272;">100px</div>
+        <div class="ds-spacing-block" style="height:100px;"></div>
+        <div style="font-family:monospace;font-size:10px;color:#aaa;">section padding</div>
+      </div>
+      <div class="ds-spacing-item">
+        <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#727272;">128px</div>
+        <div class="ds-spacing-block" style="height:128px;"></div>
+        <div style="font-family:monospace;font-size:10px;color:#aaa;">navbar height</div>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Header structure diagram -->
+    <div class="ds-label">Estrutura do Header</div>
+    <div style="font-family:'Open Sans',sans-serif;font-size:13px;color:#333;line-height:1.8;">
+      <div style="background:#170958;color:#fff;padding:10px 16px;border-radius:4px 4px 0 0;">
+        <code style="color:#fec722;">.header-top</code> — background: #170958 — altura: auto
+        <div style="margin-left:20px;opacity:0.8;font-size:12px;">.container &gt; .row &gt; .col-sm-5 (telefone/email) + .col-sm-7 (redes/acesso)</div>
+      </div>
+      <div style="background:#fff;border:1px solid #ebebeb;padding:10px 16px;">
+        <code style="color:#170958;">.header-body</code> — position: absolute; width: 100%
+        <div style="margin-left:20px;font-size:12px;color:#727272;">
+          <code>.edu-navbar.boxImgCuida</code> — background: #fff; height: 128px<br/>
+          &nbsp;&nbsp;.container &gt; .navbar-header (logo) + .edu-nav (menu links)
+        </div>
+      </div>
+      <div style="background:#170958;color:#fff;padding:10px 16px;border-radius:0 0 4px 4px;">
+        <code style="color:#56b68b;">nav.boxMenu</code> — background: #170958; padding: 0 (opcional, visto no site)
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 5 — MOTION & INTERACTION
+══════════════════════════════════════════════ -->
+<section id="ds-motion" class="ds-section">
+  <div class="container">
+    <p class="ds-section-title">Seção 05</p>
+    <h2 class="ds-section-heading">Movimento &amp; Interação</h2>
+    <p class="ds-section-desc">Todas as transições usam <code>ease-in-out</code>. A animação principal é <code>whatsapp-animation</code> (fade-in do botão flutuante). Interaja com os exemplos abaixo.</p>
+
+    <div class="motion-grid">
+
+      <!-- Float button animation -->
+      <div class="motion-card">
+        <div class="motion-name">Float Button — whatsapp-animation</div>
+        <pre class="motion-css">@keyframes whatsapp-animation {
+  from { opacity: 0%; }
+  to   { opacity: 100%; }
+}
+animation: whatsapp-animation 0.5s ease-in-out</pre>
+        <div>
+          <button class="demo-float-btn" type="button" onclick="this.style.animation='none';this.offsetHeight;this.style.animation='';">
+            <i class="fa fa-wpforms"></i> Rematrícula
+          </button>
+          <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#727272;margin-top:8px;">Clique para reanimar o fade-in</div>
+        </div>
+      </div>
+
+      <!-- Float button hover -->
+      <div class="motion-card">
+        <div class="motion-name">Float Button — hover color</div>
+        <pre class="motion-css">transition: background-color 0.3s ease;
+/* hover: */
+background-color: #170958;</pre>
+        <div>
+          <button class="demo-float-btn" type="button">
+            <i class="fa fa-wpforms"></i> Passe o mouse
+          </button>
+        </div>
+      </div>
+
+      <!-- Nav link underline -->
+      <div class="motion-card">
+        <div class="motion-name">Nav Link — underline slide-in</div>
+        <pre class="motion-css">transition: all 0.3s ease-in-out
+/* ::before pseudo-element */
+visibility: hidden; opacity: 0;
+/* :hover ::before */
+visibility: visible; opacity: 1;
+background: #fec722; height: 2px;</pre>
+        <div style="background:#170958;padding:12px 16px;border-radius:4px;display:inline-flex;gap:20px;">
+          <a href="#" style="font-family:'Open Sans',sans-serif;font-size:13px;font-weight:700;color:#fff;text-decoration:none;text-transform:uppercase;position:relative;padding-bottom:4px;transition:color 0.3s;">Institucional</a>
+          <a href="#" style="font-family:'Open Sans',sans-serif;font-size:13px;font-weight:700;color:#fec722;text-decoration:none;text-transform:uppercase;position:relative;padding-bottom:4px;border-bottom:2px solid #fec722;">Diferenciais</a>
+        </div>
+      </div>
+
+      <!-- News card hover -->
+      <div class="motion-card">
+        <div class="motion-name">News Card — hover scale + shadow</div>
+        <pre class="motion-css">.news-single-box {
+  box-shadow: 0 0 10px rgba(0,0,0,0.13);
+  transition: all 0.3s ease-in-out;
+}
+.news-single-box:hover {
+  box-shadow: 0 1px 30px rgba(0,0,0,0.25);
+}
+.news-img-box img {
+  transition: all 0.3s ease-in-out;
+}
+.news-single-box:hover .news-img-box img {
+  transform: scale(1.1);
+}</pre>
+        <div style="max-width:200px;">
+          <div class="news-single-box" style="cursor:pointer;">
+            <div class="news-img-box" style="overflow:hidden;">
+              <img alt="" class="img-responsive" src="assets/enem-2025_b8ffc7718cc1.png"/>
+            </div>
+            <div class="news-content">
+              <h3 style="font-size:14px;"><a href="#" style="color:#333;">Passe o mouse</a></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sticky navbar transition -->
+      <div class="motion-card">
+        <div class="motion-name">Sticky Navbar — scroll transition</div>
+        <pre class="motion-css">.is-sticky .edu-navbar {
+  background: #ffffff;
+  box-shadow: 0 0 50px 0 rgba(0,0,0,0.15);
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+/* link colors shift */
+.is-sticky .nav li a { color: #333333; }
+.is-sticky .nav li:hover a { color: #fec722; }</pre>
+        <div class="demo-header-sticky">
+          <span>Institucional</span>
+          <span style="color:#333;border:none;">Contato</span>
+          <span style="color:#333;border:none;">Multimídia</span>
+        </div>
+      </div>
+
+      <!-- Dropdown hover -->
+      <div class="motion-card">
+        <div class="motion-name">Dropdown Menu — fade in</div>
+        <pre class="motion-css">ul.dropdown {
+  visibility: hidden;
+  opacity: 0;
+  transition: all ease-in-out 0.3s;
+}
+li:hover ul.dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+.dropdown li a {
+  color: #333333;
+  padding: 10px 30px;
+  transition: all 0.3s ease-in-out;
+}
+.dropdown li a:hover { color: #fec722; }</pre>
+        <div style="background:#fff;border:1px solid #ebebeb;border-radius:4px;overflow:hidden;width:200px;">
+          <div style="background:#170958;padding:10px 16px;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;">Institucional</div>
+          <ul style="list-style:none;margin:0;padding:8px 0;">
+            <li><a href="#" style="font-family:'Open Sans',sans-serif;font-size:13px;color:#333;text-decoration:none;display:block;padding:8px 24px;transition:color 0.3s;">História</a></li>
+            <li><a href="#" style="font-family:'Open Sans',sans-serif;font-size:13px;color:#fec722;text-decoration:none;display:block;padding:8px 24px;font-weight:600;">Propostas</a></li>
+            <li><a href="#" style="font-family:'Open Sans',sans-serif;font-size:13px;color:#333;text-decoration:none;display:block;padding:8px 24px;transition:color 0.3s;">Fundadores</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Carousel slide -->
+      <div class="motion-card">
+        <div class="motion-name">Carousel Bootstrap — slide transition</div>
+        <pre class="motion-css">.carousel-control {
+  background-image: none;
+  transition: 0.6s ease-in-out left;
+}
+/* Bootstrap default slide:
+   transform on .item + .item.next */
+data-ride="carousel"
+data-interval="5000"</pre>
+        <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
+          <div style="background:rgba(23,9,88,0.1);border:1px solid rgba(23,9,88,0.2);padding:12px 20px;border-radius:4px;display:flex;align-items:center;gap:8px;">
+            <span class="fas fa-chevron-left" style="color:#170958;font-size:20px;"></span>
+            <span style="font-family:'Open Sans',sans-serif;font-size:12px;color:#170958;font-weight:600;">prev slide</span>
+          </div>
+          <div style="background:rgba(23,9,88,0.1);border:1px solid rgba(23,9,88,0.2);padding:12px 20px;border-radius:4px;display:flex;align-items:center;gap:8px;">
+            <span style="font-family:'Open Sans',sans-serif;font-size:12px;color:#170958;font-weight:600;">next slide</span>
+            <span class="fas fa-chevron-right" style="color:#170958;font-size:20px;"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- H3 hover -->
+      <div class="motion-card">
+        <div class="motion-name">H3 News Link — color transition</div>
+        <pre class="motion-css">h3 { transition: all 0.3s ease-in-out; }
+.news-single-box:hover h3 a {
+  color: #fec722;
+}</pre>
+        <div>
+          <h3 style="font-size:16px;margin:0;"><a href="#" style="color:#333;text-decoration:none;transition:color 0.3s;"
+            onmouseover="this.style.color='#fec722'"
+            onmouseout="this.style.color='#333'">Passe o mouse sobre o título</a></h3>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Timing tokens -->
+    <div class="ds-label">Tokens de Tempo</div>
+    <table class="typo-table">
+      <thead>
+        <tr><th>Token</th><th>Valor</th><th>Uso</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Duration Fast</td><td><code>0.3s</code></td><td>Maioria das transições de hover (hover links, cards, dropdowns, h3)</td></tr>
+        <tr><td>Duration Medium</td><td><code>0.5s</code></td><td>whatsapp-animation (float button fade-in)</td></tr>
+        <tr><td>Duration Slow</td><td><code>0.6s</code></td><td>Bootstrap carousel slide</td></tr>
+        <tr><td>Easing Standard</td><td><code>ease-in-out</code></td><td>Padrão em quase todas as transições CSS</td></tr>
+        <tr><td>Easing Ease</td><td><code>ease</code></td><td>Float button background-color, sticky navbar</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 6 — ICONS
+══════════════════════════════════════════════ -->
+<section id="ds-icons" class="ds-section">
+  <div class="container">
+    <p class="ds-section-title">Seção 06</p>
+    <h2 class="ds-section-heading">Ícones</h2>
+    <p class="ds-section-desc">Font Awesome 5 Free (via <code>font-awesome_b27bc9b0a771.css</code>). Ícones usados na interface do site organizados por contexto.</p>
+
+    <!-- Header / Navigation icons -->
+    <div class="ds-label">Header &amp; Navegação</div>
+    <div class="icon-grid" style="margin-bottom:40px;">
+      <div class="icon-item"><i class="fa fa-phone"></i><span class="icon-name">fa-phone<br/><code style="font-size:9px;color:#aaa;">header-top-left</code></span></div>
+      <div class="icon-item"><i class="fa fa-envelope"></i><span class="icon-name">fa-envelope<br/><code style="font-size:9px;color:#aaa;">header-top-left</code></span></div>
+      <div class="icon-item"><i class="fa fa-lock"></i><span class="icon-name">fa-lock<br/><code style="font-size:9px;color:#aaa;">Acesso Restrito</code></span></div>
+      <div class="icon-item"><i class="fa fa-facebook"></i><span class="icon-name">fa-facebook<br/><code style="font-size:9px;color:#aaa;">redes sociais</code></span></div>
+      <div class="icon-item"><i class="fa fa-instagram"></i><span class="icon-name">fa-instagram<br/><code style="font-size:9px;color:#aaa;">redes sociais</code></span></div>
+      <div class="icon-item"><i class="fa fa-long-arrow-right"></i><span class="icon-name">fa-long-arrow-right<br/><code style="font-size:9px;color:#aaa;">read_more-btn / footer</code></span></div>
+    </div>
+
+    <!-- Content icons -->
+    <div class="ds-label">Inteligências Múltiplas</div>
+    <div class="icon-grid" style="margin-bottom:40px;">
+      <div class="icon-item"><i class="fa fa-calculator"></i><span class="icon-name">fa-calculator<br/><code style="font-size:9px;color:#aaa;">Lógico-Matemática</code></span></div>
+      <div class="icon-item"><i class="fa fa-comment"></i><span class="icon-name">fa-comment<br/><code style="font-size:9px;color:#aaa;">Linguístico-Verbal</code></span></div>
+      <div class="icon-item"><i class="fa fa-running"></i><span class="icon-name">fa-running<br/><code style="font-size:9px;color:#aaa;">Corporal-Cinestésica</code></span></div>
+      <div class="icon-item"><i class="fa fa-cube"></i><span class="icon-name">fa-cube<br/><code style="font-size:9px;color:#aaa;">Visual Espacial</code></span></div>
+      <div class="icon-item"><i class="fa fa-music"></i><span class="icon-name">fa-music<br/><code style="font-size:9px;color:#aaa;">Musical</code></span></div>
+      <div class="icon-item"><i class="fa fa-users"></i><span class="icon-name">fa-users<br/><code style="font-size:9px;color:#aaa;">Interpessoal</code></span></div>
+      <div class="icon-item"><i class="fa fa-praying-hands"></i><span class="icon-name">fa-praying-hands<br/><code style="font-size:9px;color:#aaa;">Intrapessoal / Espiritual</code></span></div>
+      <div class="icon-item"><i class="fa fa-leaf"></i><span class="icon-name">fa-leaf<br/><code style="font-size:9px;color:#aaa;">Naturalista</code></span></div>
+    </div>
+
+    <!-- Action & UI icons -->
+    <div class="ds-label">Ações &amp; UI</div>
+    <div class="icon-grid" style="margin-bottom:40px;">
+      <div class="icon-item"><i class="fa fa-calendar"></i><span class="icon-name">fa-calendar<br/><code style="font-size:9px;color:#aaa;">news-time</code></span></div>
+      <div class="icon-item"><i class="fas fa-chevron-left"></i><span class="icon-name">fas fa-chevron-left<br/><code style="font-size:9px;color:#aaa;">carousel-control</code></span></div>
+      <div class="icon-item"><i class="fas fa-chevron-right"></i><span class="icon-name">fas fa-chevron-right<br/><code style="font-size:9px;color:#aaa;">carousel-control</code></span></div>
+      <div class="icon-item"><i class="fa fa-wpforms"></i><span class="icon-name">fa-wpforms<br/><code style="font-size:9px;color:#aaa;">float-button</code></span></div>
+      <div class="icon-item"><i class="fa fa-map-marker"></i><span class="icon-name">fa-map-marker<br/><code style="font-size:9px;color:#aaa;">footer address</code></span></div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Icon size variants -->
+    <div class="ds-label">Escalas de Tamanho</div>
+    <div style="display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap;margin-bottom:32px;">
+      <div class="ds-spacing-item">
+        <i class="fa fa-calculator" style="font-size:11px;color:#170958;"></i>
+        <span style="font-family:'Open Sans',sans-serif;font-size:10px;color:#aaa;">11px<br/>top-icon</span>
+      </div>
+      <div class="ds-spacing-item">
+        <i class="fa fa-calculator" style="font-size:14px;color:#170958;"></i>
+        <span style="font-family:'Open Sans',sans-serif;font-size:10px;color:#aaa;">14px<br/>event-icon</span>
+      </div>
+      <div class="ds-spacing-item">
+        <i class="fa fa-calculator" style="font-size:20px;color:#170958;"></i>
+        <span style="font-family:'Open Sans',sans-serif;font-size:10px;color:#aaa;">20px<br/>fa-whatsapp</span>
+      </div>
+      <div class="ds-spacing-item">
+        <i class="fa fa-calculator" style="font-size:24px;color:#170958;"></i>
+        <span style="font-family:'Open Sans',sans-serif;font-size:10px;color:#aaa;">24px<br/>inteligencias</span>
+      </div>
+      <div class="ds-spacing-item">
+        <i class="fa fa-calculator" style="font-size:30px;color:#170958;"></i>
+        <span style="font-family:'Open Sans',sans-serif;font-size:10px;color:#aaa;">30px<br/>carousel ctrl</span>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Color inheritance -->
+    <div class="ds-label">Herança de Cor por Contexto</div>
+    <div class="icon-color-row">
+      <div class="icon-color-demo">
+        <div style="background:#170958;padding:12px;border-radius:4px;"><i class="fa fa-phone" style="font-size:20px;color:#fff;"></i></div>
+        <span>#ffffff<br/>header-top</span>
+      </div>
+      <div class="icon-color-demo">
+        <div style="background:#fff;border:1px solid #ebebeb;padding:12px;border-radius:4px;"><i class="fa fa-phone" style="font-size:20px;color:#170958;"></i></div>
+        <span>#170958<br/>footer</span>
+      </div>
+      <div class="icon-color-demo">
+        <div style="background:#fff;border:1px solid #ebebeb;padding:12px;border-radius:4px;"><i class="fa fa-calendar" style="font-size:20px;color:#727272;"></i></div>
+        <span>#727272<br/>news-time</span>
+      </div>
+      <div class="icon-color-demo">
+        <div style="background:#fec722;padding:12px;border-radius:4px;"><i class="fa fa-long-arrow-right" style="font-size:20px;color:#333;"></i></div>
+        <span>#333333<br/>footer-icon active</span>
+      </div>
+      <div class="icon-color-demo">
+        <div style="background:#170958;padding:12px;border-radius:4px;"><i class="fa fa-calculator" style="font-size:20px;color:#fff;"></i></div>
+        <span>#ffffff<br/>inteligencias</span>
+      </div>
+      <div class="icon-color-demo">
+        <div style="background:#dcc608;padding:12px;border-radius:4px;"><i class="fa fa-wpforms" style="font-size:20px;color:#fff;"></i></div>
+        <span>#ffffff<br/>float-button</span>
+      </div>
+    </div>
+
+    <hr class="ds-divider"/>
+
+    <!-- Logo -->
+    <div class="ds-label">Logo &amp; Marca</div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div style="background:#fff;border:1px solid #ebebeb;padding:24px;border-radius:4px;text-align:center;margin-bottom:16px;">
+          <img src="assets/logo_c0e703bafd98.png" style="height:100px;" alt="Logo Colégio Madre Cecilia Cros"/>
+          <div class="ds-component-label" style="margin-top:12px;text-align:center;">Logo principal (navbar)</div>
+          <div style="font-family:'Open Sans',sans-serif;font-size:11px;color:#aaa;margin-top:4px;">height: 140px; border-radius: 0 0 15px 15px</div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div style="background:#170958;border-radius:4px;padding:24px;text-align:center;margin-bottom:16px;">
+          <img src="assets/logo_c0e703bafd98.png" style="height:100px;" alt="Logo no contexto roxo"/>
+          <div class="ds-component-label" style="margin-top:12px;text-align:center;color:rgba(255,255,255,0.7);">Logo sobre background #170958</div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div style="background:#fff;border:1px solid #ebebeb;padding:24px;border-radius:4px;text-align:center;margin-bottom:16px;">
+          <img src="assets/logomissionariasnazare_89450f3b7cce.png" style="width:100%;" alt="Logo Missionárias Nazaré"/>
+          <div class="ds-component-label" style="margin-top:12px;text-align:center;">Logo Missionárias (footer)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 footer-content-box">
+        <div class="col-sm-6">
+          <ul class="list-unstyled">
+            <li><span><i aria-hidden="true" class="fa fa-phone footer-icon"></i></span> (41) 3354-5464</li>
+            <li><span><i aria-hidden="true" class="fa fa-envelope footer-icon"></i></span> contato@colegiomadrececiliacros.com.br</li>
+            <li><span><i aria-hidden="true" class="fa fa-map-marker footer-icon"></i></span> R. Benvenuto Gusso, 1634 - Boa Vista, Curitiba - PR</li>
+          </ul>
+        </div>
+        <div class="col-sm-6" style="text-align:right;padding-top:20px;">
+          <a href="index.html" style="font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;color:#fff;text-decoration:none;">
+            <i class="fa fa-long-arrow-right footer-icon"></i> Voltar ao site principal
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 footer-no-padding">
+            <p>© Sistema de Design — Colégio Madre Cecilia Cros | Referência visual gerada a partir de <code>index.html</code></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- jQuery -->
+<script src="assets/jquery-1_8f44e3752e59.js"></script>
+<!-- Bootstrap JS (carousel + modal) -->
+<script src="assets/bootstrap_d9c0b0258687.js"></script>
+
+<script>
+  // DS Nav active state on scroll
+  (function() {
+    var sections = document.querySelectorAll('#ds-typography, #ds-colors, #ds-components, #ds-layout, #ds-motion, #ds-icons');
+    var navLinks = document.querySelectorAll('#ds-nav a');
+    function onScroll() {
+      var scrollY = window.scrollY + 100;
+      var current = '';
+      sections.forEach(function(s) {
+        if (s.offsetTop <= scrollY) current = s.id;
+      });
+      navLinks.forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+  })();
+
+  // Bootstrap carousel init
+  $(document).ready(function() {
+    $('#carousel-example-generic').carousel({ interval: 5000 });
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
+</body>
+</html>
