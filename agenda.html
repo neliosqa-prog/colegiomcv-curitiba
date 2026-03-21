@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Agenda Escolar — Colégio Madre Cecília</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* ═══ RESET & VARS ═══ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --brand:      #170958;
+  --brand-dark: #0d0535;
+  --brand-mid:  #1e0d70;
+  --teal:       #56b68b;
+  --gold:       #fec722;
+  --orange:     #fe8717;
+  --white:      #ffffff;
+  --gray-text:  #333333;
+  --gray-soft:  #727272;
+  --gray-bg:    #f9f9f9;
+  --gray-border:#e8e8e8;
+  --radius:     12px;
+  --shadow:     0 4px 20px rgba(0,0,0,0.10);
+}
+body { font-family: 'Open Sans', sans-serif; color: var(--gray-text); background: var(--white); overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+
+/* ═══ HEADER ═══ */
+#portal-header {
+  background: var(--brand); border-bottom: 3px solid var(--gold);
+  padding: 0 24px; position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+#portal-header .hdr-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; height: 64px;
+}
+.hdr-brand { display: flex; align-items: center; gap: 12px; }
+.hdr-brand .brand-icon {
+  width: 40px; height: 40px; background: var(--gold); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--brand);
+}
+.hdr-brand .brand-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--white); line-height: 1.2; }
+.hdr-brand .brand-name span { display: block; font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.65); }
+.hdr-nav { display: flex; align-items: center; gap: 4px; }
+.hdr-nav a { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75); padding: 8px 14px; border-radius: 8px; transition: background 0.2s, color 0.2s; }
+.hdr-nav a:hover, .hdr-nav a.active { background: rgba(255,255,255,0.10); color: var(--gold); }
+.avatar { width: 34px; height: 34px; background: var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #fff; cursor: pointer; }
+@media (max-width: 768px) { .hdr-nav { display: none; } }
+
+/* ═══ PAGE HERO ═══ */
+#page-hero {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-mid) 100%);
+  padding: 48px 24px;
+}
+#page-hero .container { max-width: 1200px; margin: 0 auto; }
+.page-hero-inner { display: flex; align-items: center; gap: 20px; }
+.page-hero-icon {
+  width: 64px; height: 64px; background: rgba(255,255,255,0.10);
+  border: 2px solid rgba(255,255,255,0.20); border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; color: var(--gold); flex-shrink: 0;
+}
+.page-hero-text h1 {
+  font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 800;
+  color: var(--white); margin-bottom: 6px;
+}
+.page-hero-text p { font-size: 14px; color: rgba(255,255,255,0.65); }
+.breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+.breadcrumb a { font-size: 12px; color: rgba(255,255,255,0.55); transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb span { font-size: 12px; color: rgba(255,255,255,0.30); }
+.breadcrumb .current { font-size: 12px; color: var(--gold); font-weight: 600; }
+
+/* ═══ LAYOUT PRINCIPAL ═══ */
+#agenda-main { background: var(--gray-bg); padding: 40px 24px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.agenda-layout { display: grid; grid-template-columns: 320px 1fr; gap: 28px; align-items: start; }
+@media (max-width: 1024px) { .agenda-layout { grid-template-columns: 1fr; } }
+
+/* ═══ FILTROS ═══ */
+.filter-bar {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+}
+.filter-btn {
+  font-family: 'Open Sans', sans-serif; font-size: 12px; font-weight: 700;
+  padding: 7px 16px; border-radius: 100px; border: 2px solid var(--gray-border);
+  background: var(--white); color: var(--gray-soft); cursor: pointer;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+}
+.filter-btn:hover { border-color: var(--brand); color: var(--brand); }
+.filter-btn.active { border-color: var(--brand); background: var(--brand); color: var(--white); }
+.filter-btn.cat-reuniao.active  { background: var(--brand);   border-color: var(--brand); }
+.filter-btn.cat-evento.active   { background: var(--teal);    border-color: var(--teal); }
+.filter-btn.cat-academico.active{ background: #c9a000;        border-color: #c9a000; }
+.filter-btn.cat-esporte.active  { background: var(--orange);  border-color: var(--orange); }
+.filter-btn.cat-feriado.active  { background: #c0392b;        border-color: #c0392b; }
+.filter-dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-reuniao  { background: var(--brand); }
+.dot-evento   { background: var(--teal); }
+.dot-academico{ background: #c9a000; }
+.dot-esporte  { background: var(--orange); }
+.dot-feriado  { background: #c0392b; }
+
+/* ═══ CALENDÁRIO ═══ */
+.calendar-card {
+  background: var(--white); border: 1px solid var(--gray-border);
+  border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+  position: sticky; top: 88px;
+}
+.cal-header {
+  background: var(--brand); padding: 18px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cal-header h3 { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: var(--white); }
+.cal-nav-btn {
+  width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.25);
+  background: transparent; color: var(--white); cursor: pointer; display: flex;
+  align-items: center; justify-content: center; font-size: 12px; transition: background 0.2s;
+}
+.cal-nav-btn:hover { background: rgba(255,255,255,0.15); }
+.cal-body { padding: 16px; }
+.cal-weekdays {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  text-align: center; margin-bottom: 8px;
+}
+.cal-weekdays span { font-size: 10px; font-weight: 700; color: var(--gray-soft); text-transform: uppercase; padding: 4px 0; }
+.cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.cal-day {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; border-radius: 8px; cursor: pointer;
+  transition: background 0.15s, color 0.15s; color: var(--gray-text);
+  position: relative;
+}
+.cal-day:hover { background: rgba(23,9,88,0.08); }
+.cal-day.other-month { color: var(--gray-border); }
+.cal-day.today { background: var(--brand); color: var(--white); }
+.cal-day.has-event::after {
+  content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px; border-radius: 50%; background: var(--gold);
+}
+.cal-day.today::after { background: var(--gold); }
+.cal-legend { padding: 12px 16px; border-top: 1px solid var(--gray-border); display: flex; flex-direction: column; gap: 8px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--gray-soft); font-weight: 600; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* ═══ LISTA DE EVENTOS ═══ */
+.events-col { display: flex; flex-direction: column; gap: 16px; }
+.sync-bar {
+  background: var(--white); border: 1px solid var(--gray-border);
+  border-radius: var(--radius); padding: 14px 18px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.sync-bar p { font-size: 13px; color: var(--gray-soft); }
+.sync-bar p strong { color: var(--gray-text); }
+.btn-sync {
+  background: var(--brand); color: var(--white);
+  font-size: 12px; font-weight: 700; padding: 8px 18px;
+  border-radius: 100px; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px; transition: background 0.2s;
+}
+.btn-sync:hover { background: var(--brand-mid); }
+
+.event-card {
+  background: var(--white); border: 1px solid var(--gray-border);
+  border-radius: var(--radius); padding: 20px;
+  display: flex; gap: 18px; align-items: flex-start;
+  transition: box-shadow 0.2s, transform 0.2s; cursor: pointer;
+}
+.event-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.event-card[data-cat="feriado"] { border-left: 4px solid #c0392b; }
+.event-card[data-cat="reuniao"]  { border-left: 4px solid var(--brand); }
+.event-card[data-cat="evento"]   { border-left: 4px solid var(--teal); }
+.event-card[data-cat="academico"]{ border-left: 4px solid #c9a000; }
+.event-card[data-cat="esporte"]  { border-left: 4px solid var(--orange); }
+
+.event-date-block {
+  min-width: 56px; text-align: center; flex-shrink: 0;
+  background: var(--gray-bg); border-radius: 10px; padding: 10px 8px;
+}
+.event-date-block .eday { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; color: var(--brand); line-height: 1; }
+.event-date-block .emon { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--gray-soft); margin-top: 2px; }
+.event-body { flex: 1; }
+.event-body .etag {
+  display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 10px;
+  border-radius: 100px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.etag-reuniao  { background: rgba(23,9,88,0.10);   color: var(--brand); }
+.etag-evento   { background: rgba(86,182,139,0.15); color: #2d7a5a; }
+.etag-academico{ background: rgba(201,160,0,0.15);  color: #7a5e00; }
+.etag-esporte  { background: rgba(254,135,23,0.15); color: #b05a00; }
+.etag-feriado  { background: rgba(192,57,43,0.12);  color: #8b1c1c; }
+
+.event-body h3 { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.event-body .emeta { font-size: 12px; color: var(--gray-soft); display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; }
+.event-body .emeta span { display: flex; align-items: center; gap: 5px; }
+.event-body .edesc { font-size: 13px; color: var(--gray-soft); line-height: 1.5; }
+
+.no-events {
+  background: var(--white); border: 1px dashed var(--gray-border);
+  border-radius: var(--radius); padding: 48px 24px; text-align: center;
+  display: none;
+}
+.no-events i { font-size: 40px; color: var(--gray-border); margin-bottom: 12px; }
+.no-events p { font-size: 14px; color: var(--gray-soft); }
+
+/* ═══ RODAPÉ ═══ */
+#portal-footer { background: var(--brand-dark); padding: 32px 24px; border-top: 3px solid var(--gold); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.30); }
+.footer-link { font-size: 12px; color: rgba(255,255,255,0.45); display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+.footer-link:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="portal-header" role="banner">
+  <div class="hdr-inner">
+    <a href="index.html" class="hdr-brand" aria-label="Ir para a página inicial">
+      <div class="brand-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+      <div class="brand-name">Colégio Madre Cecília <span>Portal Educacional</span></div>
+    </a>
+    <nav class="hdr-nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="agenda.html" class="active" aria-current="page">Agenda</a>
+      <a href="documentos.html">Documentos</a>
+      <a href="comunicados.html">Comunicados</a>
+      <a href="agendamento.html">Agendamento</a>
+    </nav>
+    <div class="avatar" role="button" aria-label="Menu do usuário" tabindex="0">NS</div>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section id="page-hero" aria-labelledby="page-title">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Início</a>
+      <span aria-hidden="true">›</span>
+      <span class="current">Agenda Escolar</span>
+    </nav>
+    <div class="page-hero-inner">
+      <div class="page-hero-icon" aria-hidden="true"><i class="fas fa-calendar-alt"></i></div>
+      <div class="page-hero-text">
+        <h1 id="page-title">Agenda Escolar</h1>
+        <p>Calendário completo de eventos, reuniões, feriados e datas acadêmicas do ano letivo 2026.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main id="agenda-main">
+  <div class="container">
+
+    <!-- FILTROS -->
+    <div class="filter-bar" role="group" aria-label="Filtrar eventos por categoria">
+      <button class="filter-btn active" data-filter="todos" aria-pressed="true">
+        <i class="fas fa-th-large" aria-hidden="true"></i> Todos
+      </button>
+      <button class="filter-btn cat-reuniao" data-filter="reuniao" aria-pressed="false">
+        <span class="filter-dot dot-reuniao" aria-hidden="true"></span> Reunião
+      </button>
+      <button class="filter-btn cat-evento" data-filter="evento" aria-pressed="false">
+        <span class="filter-dot dot-evento" aria-hidden="true"></span> Evento
+      </button>
+      <button class="filter-btn cat-academico" data-filter="academico" aria-pressed="false">
+        <span class="filter-dot dot-academico" aria-hidden="true"></span> Acadêmico
+      </button>
+      <button class="filter-btn cat-esporte" data-filter="esporte" aria-pressed="false">
+        <span class="filter-dot dot-esporte" aria-hidden="true"></span> Esporte
+      </button>
+      <button class="filter-btn cat-feriado" data-filter="feriado" aria-pressed="false">
+        <span class="filter-dot dot-feriado" aria-hidden="true"></span> Feriado
+      </button>
+    </div>
+
+    <div class="agenda-layout">
+
+      <!-- CALENDÁRIO MINI -->
+      <aside aria-label="Calendário mensal">
+        <div class="calendar-card">
+          <div class="cal-header">
+            <button class="cal-nav-btn" id="cal-prev" aria-label="Mês anterior">
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <h3 id="cal-month-label">Março 2026</h3>
+            <button class="cal-nav-btn" id="cal-next" aria-label="Próximo mês">
+              <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="cal-body">
+            <div class="cal-weekdays" aria-hidden="true">
+              <span>Dom</span><span>Seg</span><span>Ter</span>
+              <span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+            </div>
+            <div class="cal-days" id="cal-days" role="grid" aria-label="Dias do mês"></div>
+          </div>
+          <div class="cal-legend" aria-label="Legenda">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--brand)"></div> Reunião</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> Evento</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#c9a000"></div> Acadêmico</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Esporte</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#c0392b"></div> Feriado</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- LISTA DE EVENTOS -->
+      <div class="events-col">
+
+        <!-- SYNC BAR -->
+        <div class="sync-bar">
+          <p><strong>Sincronize a agenda</strong> com seu calendário pessoal</p>
+          <a href="#" class="btn-sync" download="agenda-madre-cecilia.ics" aria-label="Baixar arquivo ICS para sincronizar calendário">
+            <i class="fas fa-sync-alt" aria-hidden="true"></i> Sincronizar com meu calendário
+          </a>
+        </div>
+
+        <!-- EVENTOS -->
+        <div id="events-list" role="list" aria-label="Lista de eventos">
+
+          <article class="event-card" data-cat="academico" role="listitem">
+            <div class="event-date-block" aria-hidden="true"><div class="eday">20</div><div class="emon">Mar</div></div>
+            <div class="event-body">
+              <span class="etag etag-academico">Acadêmico</span>
+              <h3>Início do 1º Bimestre — Ano Letivo 2026</h3>
+              <div class="emeta">
+                <span><i class="fas fa-clock" aria-hidden="true"></i> Dia inteiro</span>
+                <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Todas as unidades</span>
+              </div>
+              <p class="edesc">Primeiro dia letivo do 1º bimestre de 2026. Todos os alunos devem comparecer uniformizados.</p>
+            </div>
+          </article>
+
+          <article class="event-card" data-cat="reuniao" role="listitem">
+            <div class="event-date-block" aria-hidden="true"><div class="eday">25</div><div class="emon">Mar</div></div>
+            <div class="event-body">
+              <span class="etag etag-reuniao">Reunião</span>
+              <h3>Reunião de Pais e Mestres — 1º Bimestre</h3>
+              <div class="emeta">
+                <span><i class="fas fa-clock" aria-hidden="true"></i> 19h00 – 21h00</span>
+                <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Auditório Principal</span>
+              </div>
+              <p class="edesc">Reunião com os pais e responsáveis para apresentação dos professores, proposta pedagógica e informações do bimestre.</p>
+            </div>
+          </article>
+
+          <article class="event-card" data-cat="academico" role="listitem">
+            <div class="event-date-block" aria-hidden="true"><div class="eday">28</div><div class="emon">Mar</div></div>
+            <div class="event-body">
+              <span class="etag etag-academico">Acadêmico</span>
+              <h3>Prazo Final — Entrega de Documentos de Matrícula</h3>
+              <div class="emeta">
+                <span><i class="fas fa-clock" aria-hidden="true"></i> 07h30 – 17h30</span>
+                <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Secretaria</span>
+              </div>
+              <p class="edesc">Último dia para entrega dos documentos de matrícula. Após esta data, a vaga poderá ser cancelada.</p>
+            </div>
+          </article>
+
+          <article class="event-card" data-cat="feriado" role="listitem">
+            <div class="event-date-block" aria-hidden="true"><div class="eday">03</div><div class="emon">Abr</div></div>
+            <div class="event-body">
+              <span class="etag etag-feriado">Feriado</span>
+              <h3>Paixão de Cristo — Feriado Nacional</h3>
+              <div class="emeta">
+                <span><i class="fas fa-clock" aria-hidden="true"></i> Dia inteiro</span>
+                <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Sem aulas</span>
+              </div>
+              <p class="edesc">Feriado nacional. Não haverá aulas ou atividades presenciais na escola.</p>
+            </div>
+          </article>
+
+          <article class="event-card" data-cat="evento" role="listitem">
+            <div class="event-date-block" aria-hidden="true"><div class="eday">04</div><div class="emon">Abr</div></div>
+            <div class="event-body">
+              <span class="etag etag-evento">Evento</span>
+              <h3>Feira de Ciências — Ensino Médio</h3>
+              <div class="emeta">
+                <span><i class="fas fa-clock" aria-hidden="true"></i> 08h00 – 12h00</span>
+                <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Quadra Poliesportiva</span>
+              </div>
+              <p class="edesc">Exposição de projetos científicos desenvolvidos pelos alunos do Ensino Médio. Aberto ao público.</p>
+            </div>
+          </article>
+
+          <article class="event-card" data-cat="esporte" role="listitem">
+            <div class="event-date-block" aria-hidden="true"><div class="eday">10</div><div class="emon">Abr</div></div>
+            <div class="event-body">
+              <span class="etag etag-esporte">Esporte</span>
+              <h3>Torneio Interno de Futsal — Fase Eliminatória</h3>
+              <div class="emeta">
+                <span><i class="fas fa-clock" aria-hidden="true"></i> 13h00 – 17h00</span>
+                <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Quadra Coberta</span>
+              </div>
+              <p class="edesc">Fase eliminatória do torneio interno de futsal. Participação dos times do 6º ao 9º ano do Fundamental.</p>
+            </div>
+          </article>
+
+          <article class="event-card" data-cat="academico" role="listitem">
+            <div class="event-date-block" aria-hidden="true"><div class="eday">22</div><div class="emon">Abr</div></div>
+            <div class="event-body">
+              <span class="etag etag-academico">Acadêmico</span>
+              <h3>Início das Avaliações do 1º Bimestre</h3>
+              <div class="emeta">
+                <span><i class="fas fa-clock" aria-hidden="true"></i> Conforme horário de cada turma</span>
+                <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Salas de aula</span>
+              </div>
+              <p class="edesc">Período de avaliações do 1º bimestre para todos os segmentos. Consulte o cronograma por disciplina.</p>
+            </div>
+          </article>
+
+        </div><!-- /events-list -->
+
+        <div class="no-events" id="no-events" role="status" aria-live="polite">
+          <i class="fas fa-calendar-times" aria-hidden="true"></i>
+          <p>Nenhum evento encontrado para este filtro.</p>
+        </div>
+
+      </div><!-- /events-col -->
+    </div><!-- /agenda-layout -->
+  </div>
+</main>
+
+<!-- RODAPÉ -->
+<footer id="portal-footer" role="contentinfo">
+  <div class="footer-bottom">
+    <p>© 2026 Colégio Madre Cecília Cros · Todos os direitos reservados</p>
+    <a href="index.html" class="footer-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar ao Portal</a>
+  </div>
+</footer>
+
+<script>
+// ═══ FILTRO DE EVENTOS ═══
+(function () {
+  const btns   = document.querySelectorAll('.filter-btn');
+  const cards  = document.querySelectorAll('.event-card');
+  const noEvts = document.getElementById('no-events');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      let visible = 0;
+      cards.forEach(card => {
+        const show = filter === 'todos' || card.dataset.cat === filter;
+        card.style.display = show ? 'flex' : 'none';
+        if (show) visible++;
+      });
+      noEvts.style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+}());
+
+// ═══ CALENDÁRIO MINI ═══
+(function () {
+  const monthLabel = document.getElementById('cal-month-label');
+  const calDays    = document.getElementById('cal-days');
+  const prevBtn    = document.getElementById('cal-prev');
+  const nextBtn    = document.getElementById('cal-next');
+
+  const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                      'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+  // Dias com eventos (dia do mês)
+  const eventDays = { 3: [20,25,28], 4: [3,4,10,22] }; // mês 0-indexed+1 → chave = mês real
+
+  let cur = new Date(2026, 2, 1); // Março 2026
+
+  function render() {
+    const year  = cur.getFullYear();
+    const month = cur.getMonth();
+    monthLabel.textContent = monthNames[month] + ' ' + year;
+
+    const firstDay  = new Date(year, month, 1).getDay();
+    const daysInMon = new Date(year, month + 1, 0).getDate();
+    const daysInPrev= new Date(year, month, 0).getDate();
+    const today     = new Date();
+    const evDays    = eventDays[month + 1] || [];
+
+    calDays.innerHTML = '';
+
+    // Dias do mês anterior
+    for (let i = firstDay - 1; i >= 0; i--) {
+      const d = document.createElement('div');
+      d.className = 'cal-day other-month';
+      d.textContent = daysInPrev - i;
+      d.setAttribute('aria-hidden', 'true');
+      calDays.appendChild(d);
+    }
+
+    // Dias do mês atual
+    for (let d = 1; d <= daysInMon; d++) {
+      const el = document.createElement('div');
+      el.className = 'cal-day';
+      el.textContent = d;
+      el.setAttribute('role', 'gridcell');
+      el.setAttribute('aria-label', d + ' de ' + monthNames[month]);
+
+      if (d === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+        el.classList.add('today');
+        el.setAttribute('aria-current', 'date');
+      }
+      if (evDays.includes(d)) el.classList.add('has-event');
+      calDays.appendChild(el);
+    }
+
+    // Dias do próximo mês
+    const total = firstDay + daysInMon;
+    const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+    for (let d = 1; d <= remaining; d++) {
+      const el = document.createElement('div');
+      el.className = 'cal-day other-month';
+      el.textContent = d;
+      el.setAttribute('aria-hidden', 'true');
+      calDays.appendChild(el);
+    }
+  }
+
+  prevBtn.addEventListener('click', () => { cur.setMonth(cur.getMonth() - 1); render(); });
+  nextBtn.addEventListener('click', () => { cur.setMonth(cur.getMonth() + 1); render(); });
+  render();
+}());
+</script>
+
+<!--
+═══════════════════════════════════════════════════════
+PUBLICAR NO SHAREPOINT — PnP PowerShell
+═══════════════════════════════════════════════════════
+
+Import-Module /Users/nelio/.local/share/powershell/Modules/PnP.PowerShell/3.1.0/PnP.PowerShell.psd1 -Force
+Connect-PnPOnline -Url "https://colegiomadrececiliacros.sharepoint.com/sites/PortalEscolaMadreCecilia" `
+    -ClientId "c354cdcf-7ac8-480d-95b7-d979e53a398c" -Interactive
+
+$p = Add-PnPPage -Name "agenda" -LayoutType Article -Publish
+Add-PnPPageSection -Page $p -SectionTemplate OneColumn -Order 1
+Add-PnPPageTextPart -Page $p -Section 1 -Column 1 `
+    -Text (Get-Content "agenda.html" -Raw)
+═══════════════════════════════════════════════════════
+-->
+
+</body>
+</html>
