@@ -749,14 +749,9 @@ async function handleLogin() {
     // ↑ redireciona o browser — o código abaixo só roda se der erro síncrono
   } catch (err) {
     setLoading(false);
-    if (err.errorCode === 'user_cancelled') {
-      showToast('error', 'Login cancelado. Tente novamente.');
-    } else if (err.errorCode === 'popup_window_error') {
-      showToast('error', 'Bloqueador de pop-ups ativo. Permita pop-ups e tente novamente.');
-    } else {
-      showToast('error', 'Erro ao iniciar login. Verifique sua conexão e tente novamente.');
-      console.error('[Login Error]', err);
-    }
+    console.error('[Login Error]', err);
+    const code = err.errorCode || err.name || 'unknown';
+    showToast('error', `[${code}] ${err.errorMessage || err.message || 'tente novamente'}`);
   }
 }
 
