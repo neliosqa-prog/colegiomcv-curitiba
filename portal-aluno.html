@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Portal do Aluno — Colégio Madre Cecília Cros. Acesse com sua conta institucional Microsoft."/>
+<title>Portal do Aluno · Colégio Madre Cecília Cros</title>
+<link rel="icon" href="assets/icone_3e6848525446.png" type="image/png"/>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+<!-- MSAL 2.x -->
+<script src="https://alcdn.msauth.net/browser/2.38.3/js/msal-browser.min.js"></script>
+
+<style>
+/* ════ RESET ════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+body { overflow-x: hidden; min-height: 100vh; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: #170958; border-radius: 3px; }
+
+/* ════ TOKENS ════ */
+:root {
+  --brand:      #170958;
+  --brand-dark: #0d0535;
+  --brand-mid:  #1e0d70;
+  --gold:       #fec722;
+  --orange:     #fe8717;
+  --teal:       #56b68b;
+}
+
+/* ════ HEADER ════ */
+#hdr {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(23,9,88,0.97);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: box-shadow 0.35s;
+}
+#hdr.scrolled {
+  background: #170958;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.28);
+}
+#hdr-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px;
+  gap: 20px;
+}
+.logo-block {
+  display: inline-flex; align-items: stretch;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.20);
+  text-decoration: none; flex-shrink: 0;
+  transition: box-shadow .25s, transform .22s;
+  background: #fff;
+}
+.logo-block:hover { box-shadow: 0 6px 26px rgba(0,0,0,0.26); transform: translateY(-1px); }
+.logo-deco {
+  background: #fe8717; display: flex; align-items: center;
+  justify-content: center; padding: 0 16px; flex-shrink: 0;
+  border-radius: 0 20px 20px 0; position: relative; z-index: 1;
+}
+.logo-deco svg { display: block; width: 26px; height: 26px; }
+.logo-img-wrap {
+  background: #fff; display: flex; align-items: center;
+  padding: 10px 22px 10px 16px; flex-shrink: 0;
+}
+.logo-img-wrap img {
+  height: 56px; width: auto; max-width: 220px;
+  object-fit: contain; display: block;
+}
+@media (max-width: 640px) {
+  .logo-block { border-radius: 12px; }
+  .logo-deco { padding: 0 11px; border-radius: 0 14px 14px 0; }
+  .logo-deco svg { width: 20px; height: 20px; }
+  .logo-img-wrap { padding: 8px 14px 8px 12px; }
+  .logo-img-wrap img { height: 40px; max-width: 150px; }
+}
+
+/* header back link */
+.hdr-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 500;
+  text-decoration: none; transition: color .2s;
+}
+.hdr-back:hover { color: var(--gold); }
+.hdr-back svg { width: 16px; height: 16px; }
+
+/* ════ PAGE BACKGROUND ════ */
+.page-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0d0535 0%, #170958 45%, #1e0d70 70%, #0a3a2a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* geometric shapes */
+.page-bg::before {
+  content: '';
+  position: absolute; top: -20%; right: -10%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(254,199,34,0.08) 0%, transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.page-bg::after {
+  content: '';
+  position: absolute; bottom: -15%; left: -8%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(86,182,139,0.10) 0%, transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* floating orbs */
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(60px); pointer-events: none; opacity: 0.35;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+.orb-1 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(254,135,23,0.4), transparent);
+  top: 10%; left: 5%;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(86,182,139,0.4), transparent);
+  top: 60%; right: 8%;
+  animation-delay: -3s;
+}
+.orb-3 {
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(254,199,34,0.3), transparent);
+  bottom: 20%; left: 40%;
+  animation-delay: -5s;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-30px) scale(1.06); }
+}
+
+/* grid pattern overlay */
+.grid-overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ════ MAIN CONTENT ════ */
+.login-container {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 120px 24px 60px;
+  position: relative; z-index: 1;
+}
+
+/* ── LOGIN CARD ── */
+.login-card {
+  width: 100%; max-width: 460px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 28px;
+  padding: 48px 44px;
+  box-shadow:
+    0 32px 80px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    0 1px 0 rgba(255,255,255,0.12) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+/* gold top accent */
+.login-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--orange), var(--teal));
+}
+
+@media (max-width: 500px) {
+  .login-card { padding: 36px 24px; border-radius: 20px; }
+}
+
+/* ── school badge ── */
+.school-badge {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px; margin-bottom: 36px;
+}
+.badge-logo {
+  width: 80px; height: 80px;
+  background: #fff;
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.30);
+  overflow: hidden;
+  position: relative;
+}
+.badge-logo img {
+  width: 64px; height: 64px; object-fit: contain;
+}
+.badge-logo::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--orange));
+}
+.badge-title {
+  text-align: center;
+}
+.badge-title h1 {
+  font-size: 22px; font-weight: 700; color: #fff;
+  line-height: 1.2; letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+.badge-title p {
+  font-size: 13.5px; color: rgba(255,255,255,0.55);
+  font-weight: 400; line-height: 1.5;
+}
+
+/* ── divider ── */
+.card-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  margin: 0 0 32px;
+}
+
+/* ── Microsoft button ── */
+.btn-ms {
+  width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px;
+  background: #fff;
+  color: #1a1a2e;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px; font-weight: 600;
+  border: none; border-radius: 14px;
+  padding: 16px 24px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  transition: transform .2s, box-shadow .2s, filter .2s;
+  position: relative; overflow: hidden;
+}
+.btn-ms::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(254,199,34,0.08));
+  transition: opacity .2s; opacity: 0;
+}
+.btn-ms:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+  filter: brightness(0.97);
+}
+.btn-ms:hover::after { opacity: 1; }
+.btn-ms:active { transform: translateY(0); }
+.btn-ms:disabled {
+  opacity: 0.65; cursor: not-allowed; transform: none;
+}
+
+/* Microsoft icon 4-squares */
+.ms-icon {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3px; width: 22px; height: 22px; flex-shrink: 0;
+}
+.ms-icon span {
+  display: block; border-radius: 1.5px;
+}
+.ms-sq-1 { background: #F25022; }
+.ms-sq-2 { background: #7FBA00; }
+.ms-sq-3 { background: #00A4EF; }
+.ms-sq-4 { background: #FFB900; }
+
+/* loading spinner */
+.btn-ms .spinner {
+  width: 20px; height: 20px;
+  border: 2.5px solid rgba(23,9,88,0.15);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  display: none; flex-shrink: 0;
+}
+.btn-ms.loading .spinner  { display: block; }
+.btn-ms.loading .ms-icon  { display: none; }
+.btn-ms.loading .btn-text { opacity: 0.7; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── info chips ── */
+.info-chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 24px; justify-content: center;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 50px; padding: 5px 12px;
+  font-size: 11.5px; color: rgba(255,255,255,0.5);
+  font-weight: 500;
+}
+.chip svg { width: 12px; height: 12px; flex-shrink: 0; opacity: 0.7; }
+
+/* ── error / success toast ── */
+#auth-toast {
+  display: none;
+  align-items: center; gap: 10px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  font-size: 13px; font-weight: 500;
+  margin-top: 20px;
+  animation: slideIn .3s ease;
+}
+#auth-toast.show { display: flex; }
+#auth-toast.error {
+  background: rgba(239,68,68,0.12);
+  border: 1px solid rgba(239,68,68,0.30);
+  color: #fca5a5;
+}
+#auth-toast.success {
+  background: rgba(86,182,139,0.12);
+  border: 1px solid rgba(86,182,139,0.30);
+  color: #86efac;
+}
+#auth-toast svg { width: 16px; height: 16px; flex-shrink: 0; }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── help text ── */
+.help-text {
+  text-align: center; margin-top: 28px;
+  font-size: 12.5px; color: rgba(255,255,255,0.30);
+  line-height: 1.6;
+}
+.help-text a {
+  color: rgba(254,199,34,0.6); text-decoration: none;
+  transition: color .2s;
+}
+.help-text a:hover { color: var(--gold); }
+
+/* ── already authenticated banner ── */
+#already-auth {
+  display: none;
+  flex-direction: column; align-items: center; gap: 12px;
+  padding: 20px; text-align: center;
+}
+#already-auth.show { display: flex; }
+.auth-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 700; color: var(--brand);
+}
+.auth-name {
+  font-size: 16px; font-weight: 600; color: #fff;
+}
+.auth-email {
+  font-size: 12.5px; color: rgba(255,255,255,0.45);
+}
+.btn-goto-portal {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  color: var(--brand); font-weight: 700; font-size: 14px;
+  border-radius: 12px; padding: 13px 28px;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 20px rgba(254,135,23,0.35);
+}
+.btn-goto-portal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(254,135,23,0.50);
+}
+.btn-sign-out {
+  background: none; border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.45); font-size: 12px; font-weight: 500;
+  border-radius: 8px; padding: 7px 16px; cursor: pointer;
+  transition: all .2s; font-family: 'Poppins', sans-serif;
+}
+.btn-sign-out:hover {
+  border-color: rgba(255,255,255,0.35); color: rgba(255,255,255,0.7);
+}
+
+/* ── right panel (desktop) ── */
+.login-layout {
+  display: flex; align-items: center; justify-content: center;
+  gap: 80px; width: 100%; max-width: 1100px;
+}
+.login-left {
+  flex: 1; max-width: 460px;
+}
+.login-right {
+  flex: 1; max-width: 480px;
+  display: none;
+}
+@media (min-width: 1024px) {
+  .login-right { display: flex; flex-direction: column; gap: 28px; }
+}
+
+.right-headline {
+  font-size: 42px; font-weight: 800; color: #fff;
+  line-height: 1.1; letter-spacing: -1px;
+}
+.right-headline span { color: var(--gold); }
+.right-sub {
+  font-size: 15px; color: rgba(255,255,255,0.55);
+  line-height: 1.7; font-weight: 400;
+  max-width: 380px;
+}
+
+/* feature list */
+.feature-list {
+  display: flex; flex-direction: column; gap: 16px;
+  margin-top: 8px;
+}
+.feature-item {
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.feat-icon {
+  width: 42px; height: 42px; border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.feat-icon svg { width: 20px; height: 20px; }
+.feat-icon.gold   { background: rgba(254,199,34,0.12); color: var(--gold); }
+.feat-icon.teal   { background: rgba(86,182,139,0.12); color: var(--teal); }
+.feat-icon.orange { background: rgba(254,135,23,0.12); color: var(--orange); }
+.feat-icon.blue   { background: rgba(96,165,250,0.12); color: #60a5fa; }
+.feat-text h3 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.feat-text p  { font-size: 12.5px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+/* secure badge */
+.secure-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(86,182,139,0.08);
+  border: 1px solid rgba(86,182,139,0.20);
+  border-radius: 50px; padding: 8px 16px;
+  font-size: 12px; font-weight: 500; color: rgba(86,182,139,0.8);
+  margin-top: 8px; width: fit-content;
+}
+.secure-badge svg { width: 14px; height: 14px; }
+
+/* ════ FOOTER ════ */
+.page-footer {
+  position: relative; z-index: 1;
+  text-align: center; padding: 24px;
+  color: rgba(255,255,255,0.22); font-size: 11.5px;
+}
+.page-footer a {
+  color: rgba(255,255,255,0.35); text-decoration: none;
+  transition: color .2s;
+}
+.page-footer a:hover { color: var(--gold); }
+</style>
+</head>
+
+<body>
+
+<!-- ════ HEADER ════ -->
+<header id="hdr">
+  <div id="hdr-inner">
+    <!-- Logo -->
+    <a href="index.html" class="logo-block" aria-label="Colégio Madre Cecília Cros — Início">
+      <div class="logo-img-wrap">
+        <img src="assets/logo-principal.png"
+             onerror="this.onerror=null;this.src='assets/icone_3e6848525446.png'"
+             alt="Colégio Madre Cecília Cros"/>
+      </div>
+      <div class="logo-deco" aria-hidden="true">
+        <svg viewBox="0 0 26 26" fill="none">
+          <circle cx="4" cy="4" r="2.5" fill="rgba(255,255,255,0.8)"/>
+          <circle cx="13" cy="4" r="2.5" fill="rgba(255,255,255,0.8)"/>
+          <circle cx="22" cy="4" r="2.5" fill="rgba(255,255,255,0.8)"/>
+          <circle cx="4" cy="13" r="2.5" fill="rgba(255,255,255,0.8)"/>
+          <circle cx="13" cy="13" r="2.5" fill="rgba(255,255,255,0.5)"/>
+          <circle cx="22" cy="13" r="2.5" fill="rgba(255,255,255,0.8)"/>
+          <circle cx="4" cy="22" r="2.5" fill="rgba(255,255,255,0.8)"/>
+          <circle cx="13" cy="22" r="2.5" fill="rgba(255,255,255,0.8)"/>
+          <circle cx="22" cy="22" r="2.5" fill="rgba(255,255,255,0.8)"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- Back link -->
+    <a href="index.html" class="hdr-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Voltar ao site
+    </a>
+  </div>
+</header>
+
+<!-- ════ PAGE ════ -->
+<div class="page-bg">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="login-container">
+    <div class="login-layout">
+
+      <!-- ── LEFT: Login Card ── -->
+      <div class="login-left">
+        <div class="login-card">
+
+          <!-- school badge -->
+          <div class="school-badge">
+            <div class="badge-logo">
+              <img src="assets/icone_3e6848525446.png" alt="Logo Madre Cecília"/>
+            </div>
+            <div class="badge-title">
+              <h1>Acesso ao Portal do Aluno</h1>
+              <p>Entre com sua conta institucional Microsoft<br/>para acessar o portal escolar</p>
+            </div>
+          </div>
+
+          <div class="card-divider"></div>
+
+          <!-- STATE 1: Not authenticated -->
+          <div id="login-section">
+            <button id="btn-login" class="btn-ms" onclick="handleLogin()">
+              <div class="spinner"></div>
+              <div class="ms-icon" aria-hidden="true">
+                <span class="ms-sq-1"></span>
+                <span class="ms-sq-2"></span>
+                <span class="ms-sq-3"></span>
+                <span class="ms-sq-4"></span>
+              </div>
+              <span class="btn-text">Entrar com Microsoft</span>
+            </button>
+
+            <!-- toast (erro / sucesso) -->
+            <div id="auth-toast" role="alert"></div>
+
+            <!-- info chips -->
+            <div class="info-chips">
+              <span class="chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Acesso seguro
+              </span>
+              <span class="chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Conta @escola.com.br
+              </span>
+              <span class="chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                Sessão protegida
+              </span>
+            </div>
+          </div>
+
+          <!-- STATE 2: Already authenticated -->
+          <div id="already-auth">
+            <div class="auth-avatar" id="auth-avatar-initials"></div>
+            <div>
+              <div class="auth-name" id="auth-name"></div>
+              <div class="auth-email" id="auth-email"></div>
+            </div>
+            <a id="btn-goto-portal" href="#" class="btn-goto-portal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
+              </svg>
+              Acessar o Portal
+            </a>
+            <button onclick="handleSignOut()" class="btn-sign-out">Sair da conta</button>
+          </div>
+
+          <p class="help-text">
+            Dúvidas? Fale com a secretaria<br/>
+            <a href="tel:4133545464">(41) 3354-5464</a> ·
+            <a href="mailto:secretaria@madrececiliacros.com.br">secretaria@madrececiliacros.com.br</a>
+          </p>
+        </div>
+      </div><!-- /.login-left -->
+
+      <!-- ── RIGHT: Features panel (desktop only) ── -->
+      <div class="login-right">
+        <div>
+          <p style="font-size:13px;color:var(--gold);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;">Portal Institucional</p>
+          <h2 class="right-headline">Tudo o que<br/>você precisa<br/><span>em um lugar</span></h2>
+          <p class="right-sub" style="margin-top:16px;">Acesse notas, comunicados, agenda escolar, documentos e serviços da secretaria com sua conta Microsoft.</p>
+        </div>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feat-icon gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </div>
+            <div class="feat-text">
+              <h3>Agenda e Calendário</h3>
+              <p>Eventos, provas e reuniões sempre atualizados</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feat-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="feat-text">
+              <h3>Documentos Escolares</h3>
+              <p>Declarações, atestados e autorizações online</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feat-icon orange">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <div class="feat-text">
+              <h3>Comunicados</h3>
+              <p>Avisos da direção e coordenação em tempo real</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+            </div>
+            <div class="feat-text">
+              <h3>Portal Microsoft 365</h3>
+              <p>Teams, OneDrive e Office integrados ao colégio</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="secure-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Autenticação segura via Microsoft Azure AD
+        </div>
+      </div><!-- /.login-right -->
+
+    </div><!-- /.login-layout -->
+  </div><!-- /.login-container -->
+
+  <footer class="page-footer">
+    © 2025 Colégio Madre Cecília Cros · CNPJ 78.004.074/0007-89 ·
+    <a href="index.html">Voltar ao site</a> ·
+    <a href="tel:4133545464">(41) 3354-5464</a>
+  </footer>
+</div><!-- /.page-bg -->
+
+
+<script>
+// ════════════════════════════════════════════════════════════
+// CONFIGURAÇÃO — substitua CLIENT_ID pelo App Registration ID
+// ════════════════════════════════════════════════════════════
+const CONFIG = {
+  clientId:    '8cbf017b-09b6-4e04-bd52-116160108485',  // App Registration do Portal Site Público
+  tenantId:    '7cd411b2-9c90-47af-aad0-21d3d7ebb29f',  // Tenant ID do colégio
+  redirectUri: window.location.origin + '/portal-aluno.html',
+  portalUrl:   'https://colegiomadrececiliacros.sharepoint.com/sites/PortalEscolaMadreCecilia',
+  scopes:      ['openid', 'profile', 'email', 'User.Read'],
+};
+
+// ════════════════════════════════════════════════════════════
+// MSAL — inicialização com PKCE (fluxo público seguro)
+// ════════════════════════════════════════════════════════════
+const msalConfig = {
+  auth: {
+    clientId:    CONFIG.clientId,
+    authority:   `https://login.microsoftonline.com/${CONFIG.tenantId}`,
+    redirectUri: CONFIG.redirectUri,
+    navigateToLoginRequestUrl: true,
+  },
+  cache: {
+    cacheLocation:        'sessionStorage', // não persiste após fechar aba
+    storeAuthStateInCookie: false,
+  },
+  system: {
+    loggerOptions: {
+      loggerCallback: (level, msg) => {
+        if (level === msal.LogLevel.Error) console.error('[MSAL]', msg);
+      },
+      piiLoggingEnabled: false,
+    },
+  },
+};
+
+const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+const loginRequest = {
+  scopes:       CONFIG.scopes,
+  prompt:       'select_account',
+};
+
+// ════════════════════════════════════════════════════════════
+// HELPERS — UI
+// ════════════════════════════════════════════════════════════
+function showToast(type, message) {
+  const toast = document.getElementById('auth-toast');
+  const icon  = type === 'error'
+    ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`
+    : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`;
+  toast.className = `show ${type}`;
+  toast.innerHTML = icon + `<span>${message}</span>`;
+  toast.style.display = 'flex';
+}
+
+function hideToast() {
+  const toast = document.getElementById('auth-toast');
+  toast.className = '';
+  toast.style.display = 'none';
+}
+
+function setLoading(isLoading) {
+  const btn = document.getElementById('btn-login');
+  if (!btn) return;
+  btn.classList.toggle('loading', isLoading);
+  btn.disabled = isLoading;
+  btn.querySelector('.btn-text').textContent = isLoading ? 'Autenticando…' : 'Entrar com Microsoft';
+}
+
+function showAuthenticatedState(account) {
+  document.getElementById('login-section').style.display = 'none';
+  const panel = document.getElementById('already-auth');
+  panel.classList.add('show');
+
+  const name   = account.name || account.username.split('@')[0];
+  const email  = account.username;
+  const initials = name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+
+  document.getElementById('auth-avatar-initials').textContent = initials;
+  document.getElementById('auth-name').textContent  = name;
+  document.getElementById('auth-email').textContent = email;
+  document.getElementById('btn-goto-portal').href   = CONFIG.portalUrl;
+}
+
+// ════════════════════════════════════════════════════════════
+// FLUXO — login com redirect (PKCE automático no MSAL 2.x)
+// ════════════════════════════════════════════════════════════
+async function handleLogin() {
+  hideToast();
+  setLoading(true);
+  try {
+    // MSAL 2.x usa PKCE automaticamente com loginRedirect
+    await msalInstance.loginRedirect(loginRequest);
+    // ↑ redireciona o browser — o código abaixo só roda se der erro síncrono
+  } catch (err) {
+    setLoading(false);
+    if (err.errorCode === 'user_cancelled') {
+      showToast('error', 'Login cancelado. Tente novamente.');
+    } else if (err.errorCode === 'popup_window_error') {
+      showToast('error', 'Bloqueador de pop-ups ativo. Permita pop-ups e tente novamente.');
+    } else {
+      showToast('error', 'Erro ao iniciar login. Verifique sua conexão e tente novamente.');
+      console.error('[Login Error]', err);
+    }
+  }
+}
+
+async function handleSignOut() {
+  const account = msalInstance.getAllAccounts()[0];
+  if (!account) return;
+  try {
+    await msalInstance.logoutRedirect({
+      account,
+      postLogoutRedirectUri: window.location.href,
+    });
+  } catch (err) {
+    console.error('[SignOut Error]', err);
+    // fallback: limpar cache e recarregar
+    msalInstance.clearCache();
+    window.location.reload();
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// INICIALIZAÇÃO — trata redirect de volta do Microsoft
+// ════════════════════════════════════════════════════════════
+async function init() {
+  try {
+    // Processa o resultado do redirect (hash na URL)
+    const result = await msalInstance.handleRedirectPromise();
+
+    if (result && result.account) {
+      // Recém autenticado — redireciona para o portal
+      showToast('success', `Bem-vindo, ${result.account.name || result.account.username.split('@')[0]}! Redirecionando…`);
+      setTimeout(() => {
+        window.location.href = CONFIG.portalUrl;
+      }, 1800);
+      return;
+    }
+
+    // Verifica se já tem sessão ativa
+    const accounts = msalInstance.getAllAccounts();
+    if (accounts.length > 0) {
+      showAuthenticatedState(accounts[0]);
+    }
+
+  } catch (err) {
+    setLoading(false);
+    // Erros comuns de redirect
+    if (err.errorCode === 'hash_empty_error') return; // sem redirect, normal
+    if (err.errorCode === 'interaction_in_progress') {
+      // já há uma interação em andamento — limpa e recarrega
+      msalInstance.clearCache();
+      return;
+    }
+    showToast('error', 'Erro na autenticação. Tente novamente.');
+    console.error('[Init Error]', err);
+  }
+}
+
+// Scroll header
+window.addEventListener('scroll', () => {
+  document.getElementById('hdr').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Inicia
+init();
+</script>
+</body>
+</html>
