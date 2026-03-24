@@ -744,7 +744,7 @@ async function handleLogin() {
   hideToast();
   setLoading(true);
   try {
-    // MSAL 2.x usa PKCE automaticamente com loginRedirect
+    await msalInstance.initialize();
     await msalInstance.loginRedirect(loginRequest);
     // ↑ redireciona o browser — o código abaixo só roda se der erro síncrono
   } catch (err) {
@@ -781,6 +781,9 @@ async function handleSignOut() {
 // ════════════════════════════════════════════════════════════
 async function init() {
   try {
+    // MSAL 2.36+ exige initialize() antes de qualquer interação
+    await msalInstance.initialize();
+
     // Processa o resultado do redirect (hash na URL)
     const result = await msalInstance.handleRedirectPromise();
 
