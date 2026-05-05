@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
 <!-- MSAL 2.x -->
-<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
+<script src="https://alcdn.msauth.net/browser/2.38.3/js/msal-browser.min.js"></script>
 
 <style>
 /* ════ RESET ════ */
@@ -653,28 +653,46 @@ body { overflow-x: hidden; min-height: 100vh; }
 
 
 <script>
-var CLIENT_ID    = '8cbf017b-09b6-4e04-bd52-116160108485';
-var TENANT_ID    = '7cd411b2-9c90-47af-aad0-21d3d7ebb29f';
-var REDIRECT_URI = 'https://neliosqa-prog.github.io/colegiomcv-curitiba/portal-aluno.html';
-var PORTAL_URL   = 'https://colegiomadrececiliacros.sharepoint.com/sites/PortalEscolaMadreCecilia';
-var SCOPES       = ['openid', 'profile', 'email', 'User.Read'];
+// ════════════════════════════════════════════════════════════
+// CONFIGURAÇÃO — substitua CLIENT_ID pelo App Registration ID
+// ════════════════════════════════════════════════════════════
+const CONFIG = {
+  clientId:    '8cbf017b-09b6-4e04-bd52-116160108485',  // App Registration do Portal Site Público
+  tenantId:    '7cd411b2-9c90-47af-aad0-21d3d7ebb29f',  // Tenant ID do colégio
+  redirectUri: 'https://neliosqa-prog.github.io/colegiomcv-curitiba/portal-aluno.html',
+  portalUrl:   'https://colegiomadrececiliacros.sharepoint.com/sites/hub',
+  scopes:      ['openid', 'profile', 'email', 'User.Read'],
+};
 
-var msalInstance = new msal.PublicClientApplication({
+// ════════════════════════════════════════════════════════════
+// MSAL — inicialização com PKCE (fluxo público seguro)
+// ════════════════════════════════════════════════════════════
+const msalConfig = {
   auth: {
-    clientId:    CLIENT_ID,
-    authority:   'https://login.microsoftonline.com/' + TENANT_ID,
-    redirectUri: REDIRECT_URI,
+    clientId:    CONFIG.clientId,
+    authority:   `https://login.microsoftonline.com/${CONFIG.tenantId}`,
+    redirectUri: CONFIG.redirectUri,
     navigateToLoginRequestUrl: true,
   },
   cache: {
-    cacheLocation:          'sessionStorage',
-    storeAuthStateInCookie: true,
+    cacheLocation:        'sessionStorage', // não persiste após fechar aba
+    storeAuthStateInCookie: false,
   },
-});
+  system: {
+    loggerOptions: {
+      loggerCallback: (level, msg) => {
+        if (level === msal.LogLevel.Error) console.error('[MSAL]', msg);
+      },
+      piiLoggingEnabled: false,
+    },
+  },
+};
 
-var loginRequest = {
-  scopes: SCOPES,
-  prompt: 'select_account',
+const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+const loginRequest = {
+  scopes:       CONFIG.scopes,
+  prompt:       'select_account',
 };
 
 // ════════════════════════════════════════════════════════════
@@ -716,7 +734,7 @@ function showAuthenticatedState(account) {
   document.getElementById('auth-avatar-initials').textContent = initials;
   document.getElementById('auth-name').textContent  = name;
   document.getElementById('auth-email').textContent = email;
-  document.getElementById('btn-goto-portal').href   = PORTAL_URL;
+  document.getElementById('btn-goto-portal').href   = CONFIG.portalUrl;
 }
 
 // ════════════════════════════════════════════════════════════
@@ -731,9 +749,14 @@ async function handleLogin() {
     // ↑ redireciona o browser — o código abaixo só roda se der erro síncrono
   } catch (err) {
     setLoading(false);
-    console.error('[Login Error]', err);
-    const code = err.errorCode || err.name || 'unknown';
-    showToast('error', `[${code}] ${err.errorMessage || err.message || 'tente novamente'}`);
+    if (err.errorCode === 'user_cancelled') {
+      showToast('error', 'Login cancelado. Tente novamente.');
+    } else if (err.errorCode === 'popup_window_error') {
+      showToast('error', 'Bloqueador de pop-ups ativo. Permita pop-ups e tente novamente.');
+    } else {
+      showToast('error', 'Erro ao iniciar login. Verifique sua conexão e tente novamente.');
+      console.error('[Login Error]', err);
+    }
   }
 }
 
@@ -768,7 +791,7 @@ async function init() {
       // Recém autenticado — redireciona para o portal
       showToast('success', `Bem-vindo, ${result.account.name || result.account.username.split('@')[0]}! Redirecionando…`);
       setTimeout(() => {
-        window.location.href = PORTAL_URL;
+        window.location.href = CONFIG.portalUrl;
       }, 1800);
       return;
     }
